@@ -1,0 +1,9 @@
+###############################################################################
+# WARNING !
+###############################################################################
+
+# This file needs to be duplicated and then renamed to 'terraform.tfvars'
+# However, it must not be checked in to your source control under any circumstances!
+
+access_key = ""
+secret_key = ""
