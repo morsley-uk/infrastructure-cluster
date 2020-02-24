@@ -352,6 +352,7 @@ MigrationBackup/
 .idea
 
 .terraform
-*.tfstate
+*.tfstate*
 *.tfstate.backup
 *.tfvars
+terraform-provider*

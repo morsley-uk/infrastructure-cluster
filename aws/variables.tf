@@ -14,10 +14,14 @@ variable "key_name" {
   default = "morsley-uk-k8s"
 }
 
-variable "public_keys_bucket" {
-  default = "morsley-uk-k8s-public-keys"
+variable "keys_bucket" {
+  default = "morsley-uk-k8s-keys"
 }
 
-variable "private_keys_bucket" {
-  default = "morsley-uk-k8s-private-keys"
+variable "instance_type" {
+  default = "t2.medium"
+}
+
+variable "docker_install_url" {
+  default = "https://releases.rancher.com/install-docker/18.09.sh"
 }

@@ -13,5 +13,5 @@ terraform {
   #   dynamodb_table = "tfstatelock"
   #   encypt         = true
   # }
-  
+
 }
