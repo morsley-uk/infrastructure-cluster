@@ -24,10 +24,10 @@ variable "instance_type" {
 
 # See: https://github.com/rancher/install-docker
 
-variable "docker_install_url" {
-  default = "https://releases.rancher.com/install-docker/19.03.5.sh"
-}
-
-variable "rke_install_url" {
-  default = "https://github.com/rancher/rke/releases/tag/v1.0.4/rke_linux_amd64"
-}
+//variable "install_docker_url" {
+//  default = "https://releases.rancher.com/install-docker/19.03.5.sh"
+//}
+//
+//variable "install_rke_url" {
+//  default = "https://github.com/rancher/rke/releases/tag/v1.0.4/rke_linux_amd64"
+//}

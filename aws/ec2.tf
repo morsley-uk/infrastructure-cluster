@@ -4,21 +4,21 @@
 
 # https://www.terraform.io/docs/providers/template/index.html
 
-data "template_file" "ec2-user-data" {
+#data "template_file" "ec2-user-data" {
 
-  template = file("${path.module}/ec2_user_data.sh")
+#  template = file("${path.module}/ec2_user_data.sh")
 
-  vars = {
-    docker_install_url = var.docker_install_url
-  }
+#  vars = {
+#    install_docker_url = var.install_docker_url
+#  }
 
-}
+#}
 
-output "ec2_user_data_sh" {
+#output "ec2_user_data_sh" {
 
-  value = data.template_file.ec2-user-data.rendered
+#  value = data.template_file.ec2-user-data.rendered
 
-}
+#}
 
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 
