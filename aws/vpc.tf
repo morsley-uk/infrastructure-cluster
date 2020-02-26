@@ -11,7 +11,7 @@ resource "aws_vpc" "k8s-vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "Concourse VPC"
+    Name = "Kubernetes VPC"
   }
 
 }
@@ -120,20 +120,20 @@ resource "aws_security_group" "k8s-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
-//  ingress {
-//    from_port   = 22
-//    to_port     = 22
-//    protocol    = "tcp"
-//    cidr_blocks = ["0.0.0.0/0"]
-//  }
-//
-//  ingress {
-//    from_port   = 6443
-//    to_port     = 6443
-//    protocol    = "tcp"
-//    cidr_blocks = ["0.0.0.0/0"]
-//  }
+
+  //  ingress {
+  //    from_port   = 22
+  //    to_port     = 22
+  //    protocol    = "tcp"
+  //    cidr_blocks = ["0.0.0.0/0"]
+  //  }
+  //
+  //  ingress {
+  //    from_port   = 6443
+  //    to_port     = 6443
+  //    protocol    = "tcp"
+  //    cidr_blocks = ["0.0.0.0/0"]
+  //  }
 
   //    ingress {
   //        from_port   = 80
@@ -211,7 +211,7 @@ resource "aws_network_acl" "allow-all" {
 //  vpc      = true
 //
 //  tags = {
-//    Name = "Concourse"
+//    Name = "Kubernetes"
 //  }
 //  
 //}
