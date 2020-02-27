@@ -10,7 +10,7 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
-variable "key_name" {
+variable "node_key_name" {
   default = "morsley-uk-k8s"
 }
 
@@ -19,7 +19,7 @@ variable "keys_bucket" {
 }
 
 variable "instance_type" {
-  default = "t2.medium"
+  default = "t2.xlarge"
 }
 
 # See: https://github.com/rancher/install-docker

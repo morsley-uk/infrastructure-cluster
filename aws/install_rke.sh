@@ -1,17 +1,19 @@
 ﻿#!/bin/sh
 
 echo ###############################################################################
-echo # INSTALLING DOCKER...
+echo # DOWNLOADING RKE...
 echo ###############################################################################
 
-sudo apt-get update
-sudo curl -fsSL https://releases.rancher.com/install-docker/19.03.5.sh -o get-docker.sh
-sudo chmod +x get-docker.sh
-sudo ./get-docker.sh
-sudo usermod -aG docker ubuntu
+#sudo curl -fsSL https://github.com/rancher/rke/releases/download/v1.0.4/rke_linux-amd64 -o rke
+#sudo chmod +x rke
+#sudo rke --version
+
+curl -fsSL https://github.com/rancher/rke/releases/download/v1.0.4/rke_linux-amd64 -o rke
+
+ls -la
 
 echo ###############################################################################
-echo # DOCKER INSTALLED
+echo # RKE DOWNLOADED
 echo ###############################################################################
 
 return 0

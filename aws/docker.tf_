@@ -6,7 +6,7 @@ resource "null_resource" "install-docker" {
     type        = "ssh"
     host        = aws_instance.k8s.public_ip
     user        = "ubuntu"
-    private_key = join("", tls_private_key.private_key.*.private_key_pem)
+    private_key = join("", tls_private_key.node_key.*.private_key_pem)
   }
 
   provisioner "remote-exec" {
@@ -23,7 +23,7 @@ resource "null_resource" "is-docker-ready" {
     type        = "ssh"
     host        = aws_instance.k8s.public_ip
     user        = "ubuntu"
-    private_key = join("", tls_private_key.private_key.*.private_key_pem)
+    private_key = join("", tls_private_key.node_key.*.private_key_pem)
   }
 
   provisioner "remote-exec" {

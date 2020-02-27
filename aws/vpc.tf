@@ -33,17 +33,17 @@ resource "aws_subnet" "public" {
 
 # PRIVATE SUBNET
 
-resource "aws_subnet" "private" {
-
-  vpc_id     = aws_vpc.k8s-vpc.id
-  cidr_block = "10.0.2.0/24" # ToDo --> Variable
-  #map_public_ip_on_launch = true
-
-  tags = {
-    Name = "Private"
-  }
-
-}
+//resource "aws_subnet" "private" {
+//
+//  vpc_id     = aws_vpc.k8s-vpc.id
+//  cidr_block = "10.0.2.0/24" # ToDo --> Variable
+//  #map_public_ip_on_launch = true
+//
+//  tags = {
+//    Name = "Private"
+//  }
+//
+//}
 
 # INTERNET GATEWAY
 
