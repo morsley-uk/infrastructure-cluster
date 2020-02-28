@@ -20,6 +20,8 @@ resource "aws_vpc" "k8s-vpc" {
 
 resource "aws_subnet" "public" {
 
+  depends_on = [ aws_vpc.k8s-vpc ]
+  
   vpc_id                  = aws_vpc.k8s-vpc.id
   cidr_block              = "10.0.1.0/24" # ToDo --> Variable
   map_public_ip_on_launch = true
@@ -33,19 +35,6 @@ resource "aws_subnet" "public" {
 
 # PRIVATE SUBNET
 
-<<<<<<< Updated upstream
-//resource "aws_subnet" "private" {
-//
-//  vpc_id     = aws_vpc.k8s-vpc.id
-//  cidr_block = "10.0.2.0/24" # ToDo --> Variable
-//  #map_public_ip_on_launch = true
-//
-//  tags = {
-//    Name = "Private"
-//  }
-//
-//}
-=======
 resource "aws_subnet" "private" {
 
   depends_on = [ aws_vpc.k8s-vpc ]
@@ -59,7 +48,6 @@ resource "aws_subnet" "private" {
   }
 
 }
->>>>>>> Stashed changes
 
 # INTERNET GATEWAY
 
