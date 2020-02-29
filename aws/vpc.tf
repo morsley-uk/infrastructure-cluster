@@ -6,12 +6,12 @@
 
 resource "aws_vpc" "k8s-vpc" {
 
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = "10.0.0.0/16" # 65,536
   instance_tenancy     = "default"
   enable_dns_hostnames = true
 
   tags = {
-    Name = "Kubernetes VPC"
+    Name = "k8s-vpc"
   }
 
 }
@@ -20,34 +20,34 @@ resource "aws_vpc" "k8s-vpc" {
 
 resource "aws_subnet" "public" {
 
-  depends_on = [ aws_vpc.k8s-vpc ]
-  
+  depends_on = [aws_vpc.k8s-vpc]
+
   vpc_id                  = aws_vpc.k8s-vpc.id
-  cidr_block              = "10.0.1.0/24" # ToDo --> Variable
+  cidr_block              = "10.0.1.0/24" # 256 - ToDo --> Variable
   map_public_ip_on_launch = true
   #availability_zone = ?
 
   tags = {
-    Name = "Public"
+    Name = "k8s-public-subnet"
   }
 
 }
 
 # PRIVATE SUBNET
 
-resource "aws_subnet" "private" {
-
-  depends_on = [ aws_vpc.k8s-vpc ]
-  
-  vpc_id     = aws_vpc.k8s-vpc.id
-  cidr_block = "10.0.2.0/24" # ToDo --> Variable
-  #map_public_ip_on_launch = true
-
-  tags = {
-    Name = "Private"
-  }
-
-}
+//resource "aws_subnet" "private" {
+//
+//  depends_on = [aws_vpc.k8s-vpc]
+//
+//  vpc_id     = aws_vpc.k8s-vpc.id
+//  cidr_block = "10.0.2.0/24" # ToDo --> Variable
+//  #map_public_ip_on_launch = true
+//
+//  tags = {
+//    Name = "Private"
+//  }
+//
+//}
 
 # INTERNET GATEWAY
 
@@ -61,15 +61,15 @@ resource "aws_subnet" "private" {
 
 resource "aws_internet_gateway" "k8s-igw" {
 
-  depends_on = [ 
-    aws_vpc.k8s-vpc, 
-    aws_subnet.public 
+  depends_on = [
+    aws_vpc.k8s-vpc,
+    aws_subnet.public
   ]
-  
+
   vpc_id = aws_vpc.k8s-vpc.id
 
   tags = {
-    Name = "K8s"
+    Name = "k8s-igw"
   }
 
 }
@@ -88,7 +88,7 @@ resource "aws_route_table" "k8s-rt" {
   }
 
   tags = {
-    Name = "Concourse"
+    Name = "k8s-rt"
   }
 
 }
@@ -119,7 +119,7 @@ resource "aws_route_table_association" "k8s-rta" {
 
 resource "aws_security_group" "k8s-sg" {
 
-  name        = "Kubernetes"
+  name        = "k8s-sg"
   description = "Kubernetes"
   vpc_id      = aws_vpc.k8s-vpc.id
 
@@ -129,41 +129,41 @@ resource "aws_security_group" "k8s-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  //  ingress {
-  //    from_port   = 22
-  //    to_port     = 22
-  //    protocol    = "tcp"
-  //    cidr_blocks = ["0.0.0.0/0"]
-  //  }
-  //
-  //  ingress {
-  //    from_port   = 6443
-  //    to_port     = 6443
-  //    protocol    = "tcp"
-  //    cidr_blocks = ["0.0.0.0/0"]
-  //  }
-
-  //    ingress {
-  //        from_port   = 80
-  //        to_port     = 80
-  //        protocol    = "tcp"
-  //        cidr_blocks = ["0.0.0.0/0"]
-  //    }
-
-  //    ingress {
-  //        from_port   = 443
-  //        to_port     = 443
-  //        protocol    = "tcp"
-  //        cidr_blocks = ["0.0.0.0/0"]
-  //    }
-
-  //    ingress {
-  //        from_port   = 8080
-  //        to_port     = 8080
-  //        protocol    = "tcp"
-  //        cidr_blocks = ["0.0.0.0/0"]
-  //    }
+//
+//  //  ingress {
+//  //    from_port   = 22
+//  //    to_port     = 22
+//  //    protocol    = "tcp"
+//  //    cidr_blocks = ["0.0.0.0/0"]
+//  //  }
+//  //
+//  //  ingress {
+//  //    from_port   = 6443
+//  //    to_port     = 6443
+//  //    protocol    = "tcp"
+//  //    cidr_blocks = ["0.0.0.0/0"]
+//  //  }
+//
+//  //    ingress {
+//  //        from_port   = 80
+//  //        to_port     = 80
+//  //        protocol    = "tcp"
+//  //        cidr_blocks = ["0.0.0.0/0"]
+//  //    }
+//
+//  //    ingress {
+//  //        from_port   = 443
+//  //        to_port     = 443
+//  //        protocol    = "tcp"
+//  //        cidr_blocks = ["0.0.0.0/0"]
+//  //    }
+//
+//  //    ingress {
+//  //        from_port   = 8080
+//  //        to_port     = 8080
+//  //        protocol    = "tcp"
+//  //        cidr_blocks = ["0.0.0.0/0"]
+//  //    }
 
   egress {
     from_port   = 0
@@ -178,33 +178,33 @@ resource "aws_security_group" "k8s-sg" {
 
 # https://www.terraform.io/docs/providers/aws/r/network_acl.html
 
-resource "aws_network_acl" "allow-all" {
-
-  vpc_id = aws_vpc.k8s-vpc.id
-
-  egress {
-    protocol   = "-1"
-    rule_no    = 100
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 0
-    to_port    = 0
-  }
-
-  ingress {
-    protocol   = "-1"
-    rule_no    = 200
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 0
-    to_port    = 0
-  }
-
-  tags = {
-    Name = "Allow All"
-  }
-
-}
+//resource "aws_network_acl" "allow-all" {
+//
+//  vpc_id = aws_vpc.k8s-vpc.id
+//
+//  egress {
+//    protocol   = "-1"
+//    rule_no    = 100
+//    action     = "allow"
+//    cidr_block = "0.0.0.0/0"
+//    from_port  = 0
+//    to_port    = 0
+//  }
+//
+//  ingress {
+//    protocol   = "-1"
+//    rule_no    = 200
+//    action     = "allow"
+//    cidr_block = "0.0.0.0/0"
+//    from_port  = 0
+//    to_port    = 0
+//  }
+//
+//  tags = {
+//    Name = "Allow All"
+//  }
+//
+//}
 
 # DHCP OPTIONS
 

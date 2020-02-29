@@ -34,26 +34,13 @@ resource "aws_instance" "k8s" {
   key_name               = aws_key_pair.key_pair.key_name
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.k8s-sg.id]
-  iam_instance_profile   = aws_iam_instance_profile.rke.name
-
-  #  user_data = data.template_file.ec2-user-data.rendered
-
-  #  connection {
-  #    type        = "ssh"
-  #    host        = self.public_ip
-  #    user        = "ubuntu"
-  #    private_key = join("", tls_private_key.private_key.*.private_key_pem)
-  #  }
-
-  #  provisioner "remote-exec" {
-  #    script = "is_docker_running.sh"
-  #  }
+  #iam_instance_profile   = aws_iam_instance_profile.rke.name
 
   tags = {
-    Name        = "Kubernetes"
+    Name        = "k8s-ec2"
     Terraform   = "true"
     Environment = "Development"
-    Operation   = "Kubernetes"
+    Operation   = "Kubernetes Cluster"
   }
 
 }

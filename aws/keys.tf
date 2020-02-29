@@ -34,19 +34,19 @@ output "key_pair" {
 #
 
 resource "aws_s3_bucket_object" "public_keys" {
-  
+
   bucket     = var.keys_bucket
   key        = "/${var.node_key_name}.pub"
   content    = join("", tls_private_key.node_key.*.public_key_openssh)
   depends_on = [aws_s3_bucket.keys]
-  
+
 }
 
 resource "aws_s3_bucket_object" "private_keys" {
-  
+
   bucket     = var.keys_bucket
   key        = "/${var.node_key_name}.pem"
   content    = join("", tls_private_key.node_key.*.private_key_pem)
   depends_on = [aws_s3_bucket.keys]
-  
+
 }
