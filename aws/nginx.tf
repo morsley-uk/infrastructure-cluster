@@ -1,6 +1,6 @@
 # https://www.terraform.io/docs/providers/null/resource.html
 
-resource "null_resource" "install-docker" {
+resource "null_resource" "install-nginx" {
 
   depends_on = [aws_instance.k8s]
 
@@ -20,9 +20,9 @@ resource "null_resource" "install-docker" {
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
-  provisioner "local-exec" {
-    command = "chmod +x install_nginx.sh && sh install_nginx.sh"
-  }
+  #provisioner "local-exec" {
+  #  command = "chmod +x install_nginx.sh && sh install_nginx.sh"
+  #}
 
   # https://www.terraform.io/docs/provisioners/remote-exec.html
 
@@ -33,5 +33,9 @@ resource "null_resource" "install-docker" {
   //  provisioner "remote-exec" {
   //    inline = [ "whoami" ]
   //  }
+
+  provisioner "remote-exec" {
+    inline = [ "chmod +x install_nginx.sh && sh install_nginx.sh" ]
+  }
 
 }
