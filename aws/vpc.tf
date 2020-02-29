@@ -178,33 +178,33 @@ resource "aws_security_group" "k8s-sg" {
 
 # https://www.terraform.io/docs/providers/aws/r/network_acl.html
 
-//resource "aws_network_acl" "allow-all" {
-//
-//  vpc_id = aws_vpc.k8s-vpc.id
-//
-//  egress {
-//    protocol   = "-1"
-//    rule_no    = 100
-//    action     = "allow"
-//    cidr_block = "0.0.0.0/0"
-//    from_port  = 0
-//    to_port    = 0
-//  }
-//
-//  ingress {
-//    protocol   = "-1"
-//    rule_no    = 200
-//    action     = "allow"
-//    cidr_block = "0.0.0.0/0"
-//    from_port  = 0
-//    to_port    = 0
-//  }
-//
-//  tags = {
-//    Name = "Allow All"
-//  }
-//
-//}
+resource "aws_network_acl" "allow-all" {
+
+  vpc_id = aws_vpc.k8s-vpc.id
+
+  egress {
+    protocol   = "-1"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  ingress {
+    protocol   = "-1"
+    rule_no    = 200
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  tags = {
+    Name = "Allow All"
+  }
+
+}
 
 # DHCP OPTIONS
 
