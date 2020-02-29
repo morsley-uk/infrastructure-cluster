@@ -18,7 +18,7 @@
 //
 output "ssh_command" {
 
-    value = "ssh -i \"morsley-uk-k8s.pem\" ubuntu@${aws_instance.k8s.public_dns}"
+  value = "ssh -i \"morsley-uk-k8s.pem\" ubuntu@${aws_instance.k8s.public_dns}"
 
 }
 

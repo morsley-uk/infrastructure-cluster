@@ -12,26 +12,26 @@ resource "null_resource" "install-docker" {
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
-  
+
   provisioner "file" {
     source      = "install_nginx.sh"
     destination = "install_nginx.sh"
   }
-  
+
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
     command = "chmod +x install_nginx.sh && sh install_nginx.sh"
   }
-  
-  # https://www.terraform.io/docs/provisioners/remote-exec.html
-  
-//  provisioner "remote-exec" {
-//    script = "install_nginx.sh"
-//  }
 
-//  provisioner "remote-exec" {
-//    inline = [ "whoami" ]
-//  }
-  
+  # https://www.terraform.io/docs/provisioners/remote-exec.html
+
+  //  provisioner "remote-exec" {
+  //    script = "install_nginx.sh"
+  //  }
+
+  //  provisioner "remote-exec" {
+  //    inline = [ "whoami" ]
+  //  }
+
 }
