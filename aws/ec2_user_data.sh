@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 #apt-get update 
 #curl -fsSL ${docker_install_url} -o get-docker.sh | sh
