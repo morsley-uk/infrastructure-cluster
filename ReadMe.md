@@ -18,3 +18,6 @@ Rancher (unofficial):
 RKE: https://github.com/rancher/terraform-provider-rke/releases
 
 Download from GitHub
+
+Then add the file to your .terraform/plugins/[Operating System] folder.
+Replace the files OS portion with its version.

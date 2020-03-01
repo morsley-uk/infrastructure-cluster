@@ -25,7 +25,8 @@
 resource "aws_instance" "k8s" {
 
   depends_on = [
-    aws_security_group.k8s-sg
+    aws_security_group.k8s-sg,
+    aws_internet_gateway.k8s-igw
   ]
 
   ami                    = data.aws_ami.ubuntu.id

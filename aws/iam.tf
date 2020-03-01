@@ -1,9 +1,9 @@
 resource "aws_iam_role" "rke-role" {
 
   name = "rke-role"
-  
+
   assume_role_policy = file("${path.module}/rke-role.json")
-  
+
 }
 
 resource "aws_iam_role_policy" "rke-access-policy" {
@@ -12,7 +12,7 @@ resource "aws_iam_role_policy" "rke-access-policy" {
   role = aws_iam_role.rke-role.id
 
   policy = file("${path.module}/rke-policy.json")
-  
+
 }
 
 resource "aws_iam_instance_profile" "rke" {

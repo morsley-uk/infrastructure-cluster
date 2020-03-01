@@ -25,9 +25,9 @@ resource "null_resource" "install-docker" {
   # https://www.terraform.io/docs/provisioners/remote-exec.html
 
   provisioner "remote-exec" {
-    inline = [ "chmod +x install_docker.sh && sh install_docker.sh" ]
+    inline = ["chmod +x install_docker.sh && sh install_docker.sh"]
   }
-  
+
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html
@@ -57,7 +57,7 @@ resource "null_resource" "is-docker-ready" {
   # https://www.terraform.io/docs/provisioners/remote-exec.html
 
   provisioner "remote-exec" {
-    inline = [ "chmod +x is_docker_ready.sh && bash is_docker_ready.sh" ]
+    inline = ["chmod +x is_docker_ready.sh && bash is_docker_ready.sh"]
   }
-  
+
 }
