@@ -357,3 +357,5 @@ MigrationBackup/
 *.tfvars
 terraform-provider*
 *.rkestate
+kube_config_cluster.yml
+kube_config_cluster.yaml

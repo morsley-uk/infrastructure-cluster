@@ -57,7 +57,7 @@ resource "null_resource" "is-docker-ready" {
   # https://www.terraform.io/docs/provisioners/remote-exec.html
 
   provisioner "remote-exec" {
-    inline = [ "chmod +x is_docker_ready.sh && sh is_docker_ready.sh" ]
+    inline = [ "chmod +x is_docker_ready.sh && bash is_docker_ready.sh" ]
   }
   
 }

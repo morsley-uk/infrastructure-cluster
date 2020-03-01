@@ -37,51 +37,46 @@
 # }
 
 
-provider "rke" {
-  log = true
-}
+//provider "rke" {
+//  name = "aws"
+//}
 
 resource "rke_cluster" "cluster" {
 
   depends_on = [null_resource.is-docker-ready]
 
+  cluster_name = "morsley-uk"
+  
   disable_port_check = false
 
-  cluster_name = "morsley-uk"
+  ignore_docker_version = true
+  
+//  cloud_provider {
+//    name = "aws"
+//  }
 
-  cloud_provider {
-    name = "aws"
-  }
+//  services {
+//    kube_api {
+//      audit_log {
+//        enabled = true
+//      }
+//      secrets_encryption_config {
+//        enabled = true
+//      }
+//    }
+//  }
 
-  services {
-    kube_api {
-      audit_log {
-        enabled = true
-      }
-      secrets_encryption_config {
-        enabled = true
-      }
-    }
-  }
-
-  network {
-    plugin = "canal"
-  }
+//  network {
+//    plugin = "canal"
+//  }
   
   nodes {
     address = aws_instance.k8s.public_ip # Public IP of EC2
-    #address = aws_instance.k8s.public_dns # Public DNS of EC2
     #internal_address = aws_instance.k8s.private_ip # Private IP of EC2
-    #internal_address = aws_instance.k8s.private_dns # Private DNS of EC2
     user    = "ubuntu"
     ssh_key = tls_private_key.node_key.private_key_pem
-    #ssh_key = join("", tls_private_key.private_key.*.private_key_pem)
-    #ssh_key = tls_private_key.private_key.*.private_key_pem
-    #ssh_key = file()
     role = [ "controlplane","etcd","worker" ]
   }
-
-  ignore_docker_version = true
   
 }
 

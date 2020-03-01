@@ -10,7 +10,7 @@ IsDockerRunning () {
 
     state=$(systemctl show --property ActiveState docker)
 
-    if [ "$state" == "ActiveState=active" ]; then
+    if [[ $state == ActiveState=active ]]; then
         echo "Yes"
         return 1
     else
@@ -27,7 +27,7 @@ do
     
     IsDockerRunning
 
-    if [[ $? -eq 1 ]]; then
+    if [[ $? == 1 ]]; then
         echo "Yippee!"
         break
     fi
@@ -38,10 +38,10 @@ done
 
 docker ps
 
-return 0
-
 set +x
 
 echo '###############################################################################'
 echo '# DOCKER READY'
 echo '###############################################################################'
+
+exit 0

@@ -34,7 +34,7 @@ resource "aws_instance" "k8s" {
   key_name               = aws_key_pair.key_pair.key_name
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.k8s-sg.id]
-  #iam_instance_profile   = aws_iam_instance_profile.rke.name
+  iam_instance_profile   = aws_iam_instance_profile.rke.name
 
   tags = {
     Name        = "k8s-ec2"
