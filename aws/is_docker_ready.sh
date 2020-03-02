@@ -4,9 +4,9 @@ echo '##########################################################################
 echo '# IS DOCKER READY...'
 echo '###############################################################################'
 
-set -x
+#set -x
 
-IsDockerRunning () {
+is_docker_running () {
 
     state=$(systemctl show --property ActiveState docker)
 
@@ -25,7 +25,7 @@ echo "Is Docker ready...?"
 while true
 do
     
-    IsDockerRunning
+    is_docker_running
 
     if [[ $? == 1 ]]; then
         echo "Yippee!"
@@ -38,7 +38,7 @@ done
 
 docker ps
 
-set +x
+#set +x
 
 echo '###############################################################################'
 echo '# DOCKER READY'

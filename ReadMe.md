@@ -21,3 +21,18 @@ Download from GitHub
 
 Then add the file to your .terraform/plugins/[Operating System] folder.
 Replace the files OS portion with its version.
+
+## Installing Rancher with Helm
+
+https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/
+
+1. Add node(s) with Terraform via AWS provider.
+2. Add cluster with Terraform via RKE provider.
+3. Add Rancher to cluster with Terraform via Bash scripts (Null_Reference resource).
+
+## Install Rancher on the Kubernetes cluster
+
+1. Add Helm chart repository.
+2. Create a Rancher namespace.
+3. Install Cert-Manager (Let's Encrypt).
+4. Install Rancher with Helm.
