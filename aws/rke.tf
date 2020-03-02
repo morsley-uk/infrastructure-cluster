@@ -65,17 +65,10 @@ resource "null_resource" "is-cluster-ready" {
     private_key = join("", tls_private_key.node_key.*.private_key_pem)
   }
 
-  # https://www.terraform.io/docs/provisioners/file.html
+  # https://www.terraform.io/docs/provisioners/local-exec.html
 
-  provisioner "file" {
-    source      = "is_cluster_ready.sh"
-    destination = "is_cluster_ready.sh"
-  }
-
-  # https://www.terraform.io/docs/provisioners/remote-exec.html
-
-  provisioner "remote-exec" {
-    inline = ["chmod +x is_cluster_ready.sh && bash is_cluster_ready.sh"]
+  provisioner "local-exec" {
+    command = "chmod +x is_cluster_ready.sh && bash is_cluster_ready.sh"
   }
 
 }
