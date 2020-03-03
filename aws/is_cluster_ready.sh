@@ -6,7 +6,7 @@ echo '##########################################################################
 
 #set -x
 
-export KUBECONFIG=$(pwd)/kube_config_cluster.yaml
+export KUBECONFIG=$(pwd)/kube_config.yaml
 
 is_cluster_ready () {
 

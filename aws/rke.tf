@@ -48,7 +48,7 @@ resource "rke_cluster" "cluster" {
 }
 
 resource "local_file" "kube_cluster_yaml" {
-  filename = "./kube_config_cluster.yaml"
+  filename = "./kube_config.yaml"
   content  = rke_cluster.cluster.kube_config_yaml
 }
 
