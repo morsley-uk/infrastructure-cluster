@@ -6,7 +6,7 @@ echo '##########################################################################
 
 set -x
 
-sudo apt-get update
+sudo apt-get update --quiet
 
 sudo curl -fsSL https://releases.rancher.com/install-docker/19.03.5.sh -o get-docker.sh
 

@@ -48,27 +48,27 @@ resource "rke_cluster" "cluster" {
 }
 
 resource "local_file" "kube_cluster_yaml" {
-  filename = "./kube_config.yaml"
+  filename = "./rancher/kube_config.yaml"
   content  = rke_cluster.cluster.kube_config_yaml
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html
 
-resource "null_resource" "is-cluster-ready" {
-
-  depends_on = [rke_cluster.cluster]
-
-  connection {
-    type        = "ssh"
-    host        = aws_instance.k8s.public_ip
-    user        = "ubuntu"
-    private_key = join("", tls_private_key.node_key.*.private_key_pem)
-  }
-
-  # https://www.terraform.io/docs/provisioners/local-exec.html
-
-  provisioner "local-exec" {
-    command = "chmod +x is_cluster_ready.sh && bash is_cluster_ready.sh"
-  }
-
-}
+//resource "null_resource" "is-cluster-ready" {
+//
+//  depends_on = [rke_cluster.cluster]
+//
+//  connection {
+//    type        = "ssh"
+//    host        = aws_instance.k8s.public_ip
+//    user        = "ubuntu"
+//    private_key = join("", tls_private_key.node_key.*.private_key_pem)
+//  }
+//
+//  # https://www.terraform.io/docs/provisioners/local-exec.html
+//
+//  provisioner "local-exec" {
+//    command = "chmod +x is_cluster_ready.sh && bash is_cluster_ready.sh"
+//  }
+//
+//}

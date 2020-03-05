@@ -28,7 +28,6 @@ do
     is_docker_running
 
     if [[ $? == 1 ]]; then
-        echo "Yippee!"
         break
     fi
 
