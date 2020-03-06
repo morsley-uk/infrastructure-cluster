@@ -1,8 +1,12 @@
 #!/bin/bash
 
-echo '###############################################################################'
-echo '# IS DOCKER READY...'
-echo '###############################################################################'
+title="Is Docker ready?"
+
+printf  "\n"
+printf  "%0.s-" {1..80}
+printf  "\n-\/- $title\n"
+printf  "%0.s-" {1..80}
+printf  "\n\n"
 
 #set -x
 
@@ -35,12 +39,21 @@ do
 
 done
 
+printf "%0.s-" {1..80}
+printf "\n"
+echo "docker ps --all"
+printf "%0.s-" {1..80}
+printf "\n"
 docker ps
+printf "%0.s-" {1..80}
+printf "\n"
 
 #set +x
 
-echo '###############################################################################'
-echo '# DOCKER READY'
-echo '###############################################################################'
+printf  "\n"
+printf  "%0.s-" {1..80}
+printf  "\n-/\- $title\n"
+printf  "%0.s-" {1..80}
+printf  "\n\n"
 
 exit 0

@@ -2,6 +2,23 @@
 # RANCHER
 #######################################################################################################################
 
+resource "null_resource" "kube-config" {
+
+  depends_on = [ null_resource.is-cluster-ready ]
+   
+  provisioner "file" {
+    source = "rancher/kube_config.yaml"
+    destination = "~/.kube/config"
+  }
+  
+} 
+
+provider "kubernetes" {
+  
+  load_config_file = true
+  
+}
+
 # -----------------------
 # Cert-Manager - JetStack
 # -----------------------
@@ -12,38 +29,38 @@
 
 # https://terraform.io/docs/providers/kubernetes/index.html
 
-//resource "kubernetes_namespace" "cert-manager" {
-//
-//  depends_on = [ null_resource.is-cluster-ready ]
-//  
-//  metadata {
-//    name = "cert-manager"
-//  }
-//
-//}
+resource "kubernetes_namespace" "cert-manager" {
+
+  depends_on = [ null_resource.kube-config ]
+  
+  metadata {
+    name = "cert-manager"
+  }
+
+}
 
 # Get the JetStack Helm repository...
 
-//data "helm_repository" "jetstack" {
-//  
-//  depends_on = [ kubernetes_namespace.cert-manager ]
-//  
-//  name = "jetstack"
-//  url = "https://charts.jetstack.io"
-//  
-//}
+data "helm_repository" "jetstack" {
+  
+  depends_on = [ kubernetes_namespace.cert-manager ]
+  
+  name = "jetstack"
+  url = "https://charts.jetstack.io"
+  
+}
 
 # Install the JetPack Helm repository...
 
-//resource "helm_release" "cert-manager" {
-//  
-//  depends_on = [ kubernetes_namespace.cert-manager ]
-//  
-//  name = "cert-manager"
-//  repository = data.helm_repository.jetstack.metadata[0].name
-//  chart = "jetstack/cert-manager"
-//  
-//}
+resource "helm_release" "cert-manager" {
+  
+  depends_on = [ kubernetes_namespace.cert-manager ]
+  
+  name = "cert-manager"
+  repository = data.helm_repository.jetstack.metadata[0].name
+  chart = "jetstack/cert-manager"
+  
+}
 
 # kubectl get-pods --namespace cert-manager
 

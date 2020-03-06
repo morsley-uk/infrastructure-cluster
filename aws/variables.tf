@@ -5,7 +5,8 @@
 variable "region" {
   #default = "eu-west-2" # London
   #default = "us-east-2" # Ohio
-  default = "us-east-1" # North Virginia
+  #default = "us-east-1" # North Virginia
+  default = "eu-west-1" # Ireland
 }
 
 variable "access_key" {}

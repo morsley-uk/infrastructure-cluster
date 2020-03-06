@@ -6,7 +6,7 @@ echo '##########################################################################
 
 #set -x
 
-export KUBECONFIG=$(pwd)/kube_config.yaml
+export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
 
 is_cluster_ready () {
 
@@ -145,7 +145,7 @@ while true; do
         break
     fi
 
-    sleep 1
+    sleep 10
 
 done
 
@@ -165,7 +165,7 @@ while true; do
         break
     fi
     
-    sleep 5
+    sleep 10
 
 done
 

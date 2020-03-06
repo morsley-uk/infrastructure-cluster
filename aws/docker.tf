@@ -18,14 +18,14 @@ resource "null_resource" "install-docker" {
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {
-    source      = "install_docker.sh"
+    source      = "scripts/install_docker.sh"
     destination = "install_docker.sh"
   }
 
   # https://www.terraform.io/docs/provisioners/remote-exec.html
 
   provisioner "remote-exec" {
-    inline = ["chmod +x install_docker.sh && sh install_docker.sh"]
+    inline = ["chmod +x install_docker.sh && bash install_docker.sh"]
   }
 
 }
@@ -42,15 +42,11 @@ resource "null_resource" "is-docker-ready" {
     user        = "ubuntu"
     private_key = join("", tls_private_key.node_key.*.private_key_pem)
   }
-
-  #provisioner "remote-exec" {
-  #  script = "is_docker_ready.sh"
-  #}
-
+  
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {
-    source      = "is_docker_ready.sh"
+    source      = "scripts/is_docker_ready.sh"
     destination = "is_docker_ready.sh"
   }
 
