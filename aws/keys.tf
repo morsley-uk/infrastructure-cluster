@@ -45,7 +45,7 @@ resource "aws_s3_bucket_object" "public-keys" {
 resource "null_resource" "delete-public-node-key" {
   
   provisioner "local-exec" {
-    command = "rm ${path.cwd}/rancher/${var.node_key_name}.pub --force"
+    command = "rm ${path.cwd}/rancher/${var.node_key_name}.pub --force || true"
   }
   
 }
@@ -71,7 +71,7 @@ resource "aws_s3_bucket_object" "private-keys" {
 resource "null_resource" "delete-private-node-key" {
 
   provisioner "local-exec" {
-    command = "rm ${path.cwd}/rancher/${var.node_key_name}.pem --force"
+    command = "rm ${path.cwd}/rancher/${var.node_key_name}.pem --force || true"
   }
 
 }
