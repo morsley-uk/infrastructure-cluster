@@ -11,6 +11,10 @@ i.e. terraform-provider-rke_windows-386.exe --> terraform-provider-rke.exe
 
 Running ```terraform init``` should now work.
 
+## Terraform Backend
 
+```
+terraform init --backend-config="access_key=" --backend-config="secret_key="
+```
 
 

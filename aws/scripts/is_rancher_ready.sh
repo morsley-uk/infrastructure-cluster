@@ -39,19 +39,19 @@ is_rancher_ready () {
 
 echo "Is Rancher ready...?"
 
-while true
-do
-    
-    is_cluster_ready
-
-    if [[ $? == 1 ]]; then
-        echo "Yippee!"
-        break
-    fi
-
-    sleep 1
-
-done
+#while true
+#do
+#    
+#    is_rancher_ready
+#
+#    if [[ $? == 1 ]]; then
+#        echo "Yippee!"
+#        break
+#    fi
+#
+#    sleep 1
+#
+#done
 
 #set +x
 

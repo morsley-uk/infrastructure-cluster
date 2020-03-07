@@ -135,6 +135,11 @@ are_deployments_ready () {
   
 }
 
+echo "Current Context:"
+print_divider
+kubectl config current-context
+print_divider
+
 echo "Are node(s) up...?"
 
 while true; do
@@ -145,7 +150,7 @@ while true; do
         break
     fi
 
-    sleep 10
+    sleep 5
 
 done
 
@@ -178,6 +183,11 @@ print_divider
 echo "Pods:"
 print_divider
 kubectl get pods --all-namespaces
+print_divider
+
+echo "Services:"
+print_divider
+kubectl get services --all-namespaces
 print_divider
 
 

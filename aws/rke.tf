@@ -46,8 +46,14 @@ resource "rke_cluster" "cluster" {
 }
 
 resource "local_file" "kube_cluster_yaml" {
-  filename = "./rancher/kube_config.yaml"
+
+  filename = "${path.cwd}/rancher/kube_config.yaml"
   content  = rke_cluster.cluster.kube_config_yaml
+
+  provisioner "local-exec" {
+    command = "chmod +x scripts/copy_kube_config.sh && bash scripts/copy_kube_config.sh"
+  }
+
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html
@@ -67,6 +73,19 @@ resource "null_resource" "is-cluster-ready" {
 
   provisioner "local-exec" {
     command = "chmod +x scripts/is_cluster_ready.sh && bash scripts/is_cluster_ready.sh"
+  }
+
+}
+
+resource "null_resource" "destroy-cluster" {
+
+  depends_on = [local_file.kube_cluster_yaml]
+
+  # https://www.terraform.io/docs/provisioners/local-exec.html
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "chmod +x scripts/destroy_cluster.sh && bash scripts/destroy_cluster.sh"
   }
 
 }

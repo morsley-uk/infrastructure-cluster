@@ -358,3 +358,5 @@ MigrationBackup/
 terraform-provider*
 *.rkestate
 kube_config.yaml
+*.pem
+*.pub

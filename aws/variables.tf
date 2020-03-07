@@ -3,10 +3,10 @@
 ###############################################################################
 
 variable "region" {
-  #default = "eu-west-2" # London
+  default = "eu-west-2" # London
   #default = "us-east-2" # Ohio
   #default = "us-east-1" # North Virginia
-  default = "eu-west-1" # Ireland
+  #default = "eu-west-1" # Ireland
 }
 
 variable "access_key" {}
@@ -22,7 +22,8 @@ variable "keys_bucket" {
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  #default = "t2.micro"
+  default = "t2.xlarge"
 }
 
 # See: https://github.com/rancher/install-docker

@@ -42,7 +42,7 @@ resource "null_resource" "is-docker-ready" {
     user        = "ubuntu"
     private_key = join("", tls_private_key.node_key.*.private_key_pem)
   }
-  
+
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {

@@ -43,20 +43,20 @@ resource "aws_s3_bucket_object" "public-keys" {
 }
 
 resource "null_resource" "delete-public-node-key" {
-  
+
   provisioner "local-exec" {
     command = "rm ${path.cwd}/rancher/${var.node_key_name}.pub --force || true"
   }
-  
+
 }
 
 resource "local_file" "public-node-key" {
 
   depends_on = [null_resource.delete-public-node-key]
-  
+
   filename = "${path.cwd}/rancher/${var.node_key_name}.pub"
-  content = join("", tls_private_key.node_key.*.public_key_openssh)
-  
+  content  = join("", tls_private_key.node_key.*.public_key_openssh)
+
 }
 
 resource "aws_s3_bucket_object" "private-keys" {
@@ -79,8 +79,8 @@ resource "null_resource" "delete-private-node-key" {
 resource "local_file" "private-node-key" {
 
   depends_on = [null_resource.delete-private-node-key]
-  
+
   filename = "${path.cwd}/rancher/${var.node_key_name}.pem"
-  content = join("", tls_private_key.node_key.*.private_key_pem)
+  content  = join("", tls_private_key.node_key.*.private_key_pem)
 
 }

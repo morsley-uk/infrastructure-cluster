@@ -19,7 +19,7 @@ resource "aws_iam_instance_profile" "rke" {
 
   name = "RKE"
   role = aws_iam_role.rke-role.name
-  
+
   lifecycle {
     create_before_destroy = true
   }
