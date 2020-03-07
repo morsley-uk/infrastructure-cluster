@@ -1,6 +1,6 @@
 # RKE Provider
 
-As the Terraform RKE provider is not yet released (v1.0.0-rc2), you will need to download this manually.
+As the Terraform RKE provider is not yet released (v1.0.0-rc3), you will need to download this manually.
 
 https://github.com/rancher/terraform-provider-rke/releases
 
