@@ -2,6 +2,8 @@
 # AWS - AMAZON WEB SERVICES
 #######################################################################################################################
 
+# https://www.terraform.io/docs/providers/aws/index.html
+
 provider "aws" {
 
   version = "~> 2.0"

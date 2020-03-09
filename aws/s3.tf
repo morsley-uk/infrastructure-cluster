@@ -24,4 +24,7 @@ resource "aws_s3_bucket" "keys" {
       }
     }
   }
+
+  force_destroy = true
+
 }

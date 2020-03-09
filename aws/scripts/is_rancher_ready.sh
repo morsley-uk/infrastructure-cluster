@@ -6,7 +6,7 @@ echo '##########################################################################
 
 #set -x
 
-export KUBECONFIG=$(pwd)/kube_config_rancher-cluster.yaml
+export KUBECONFIG=~/kube_config_rancher-cluster.yaml
 
 is_rancher_ready () {
 

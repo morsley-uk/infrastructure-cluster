@@ -6,7 +6,7 @@ echo '##########################################################################
 
 #set -x
 
-export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
+export KUBECONFIG=~/rancher/kube_config.yaml
 
 is_cluster_ready () {
 
@@ -153,6 +153,8 @@ while true; do
     sleep 5
 
 done
+
+sleep 100
 
 print_divider
 echo "Nodes:"

@@ -4,7 +4,7 @@ echo '##########################################################################
 echo '# INSTALLING RANCHER...'
 echo '###############################################################################'
 
-export KUBECONFIG=$(pwd)/kube_config.yaml
+export KUBECONFIG=~/rancher/kube_config.yaml
 
 # Please refer to the following article:
 # Installing Rancher on a Kubernetes Cluster --> https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/

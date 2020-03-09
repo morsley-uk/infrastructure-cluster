@@ -4,7 +4,7 @@
 
 terraform {
 
-  required_version = ">= 0.12.0"
+  required_version = "= 0.12.23"
 
   backend "s3" {
     bucket         = "morsley-uk-terraform-backend"

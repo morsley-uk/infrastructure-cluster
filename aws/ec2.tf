@@ -2,24 +2,6 @@
 # EC2 - Elastic Compute Cloud
 ###############################################################################
 
-# https://www.terraform.io/docs/providers/template/index.html
-
-#data "template_file" "ec2-user-data" {
-
-#  template = file("${path.module}/ec2_user_data.sh")
-
-#  vars = {
-#    install_docker_url = var.install_docker_url
-#  }
-
-#}
-
-#output "ec2_user_data_sh" {
-
-#  value = data.template_file.ec2-user-data.rendered
-
-#}
-
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 
 resource "aws_instance" "k8s" {
