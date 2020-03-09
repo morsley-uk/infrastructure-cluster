@@ -2,6 +2,8 @@
 # RKE - RANCHER KUBERNETES ENGINE
 #######################################################################################################################
 
+
+
 resource "rke_cluster" "cluster" {
 
   depends_on = [null_resource.is-docker-ready]
@@ -26,16 +28,22 @@ resource "rke_cluster" "cluster" {
 
 }
 
-//resource "local_file" "kube_cluster_yaml" {
-//
-//  filename = "~/rancher/kube_config.yaml"
-//  content  = rke_cluster.cluster.kube_config_yaml
-//
-//  provisioner "local-exec" {
-//    command = "chmod +x scripts/copy_kube_config.sh && bash scripts/copy_kube_config.sh"
-//  }
-//
-//}
+resource "aws_s3_bucket_object" "kube_config_yaml" {
+
+  depends_on = [aws_s3_bucket.keys]
+  
+  bucket     = var.keys_bucket
+  key        = "/kube_config.yaml"
+  content     = rke_cluster.cluster.kube_config_yaml
+
+}
+
+resource "local_file" "kube_config_yaml" {
+
+  filename = "rke/kube_config.yaml"
+  content  = rke_cluster.cluster.kube_config_yaml
+  
+}
 
 # https://www.terraform.io/docs/providers/null/resource.html
 

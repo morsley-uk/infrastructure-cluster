@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export KUBECONFIG=~/rancher/kube_config.yaml
+export KUBECONFIG=rke/kube_config.yaml
 
 bash header.sh "Are Node(s) Up?"
 

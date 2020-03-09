@@ -16,7 +16,7 @@ print_header
 
 #set -x
 
-export KUBECONFIG=~/rancher/kube_config.yaml
+export KUBECONFIG=rke/kube_config.yaml
 
 #nodes_json=$(kubectl get nodes --output "json" 2>/dev/null)
 ##echo $nodes_json | jq .

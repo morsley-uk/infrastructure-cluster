@@ -14,7 +14,7 @@ resource "aws_route53_record" "rancher-a-record" {
   name    = "rancher.morsley.io"
   type    = "A"
   ttl     = 300
-  records = [aws_instance.k8s.public_dns]
+  records = [aws_instance.k8s.public_ip]
 }
 
 output "route_53_name_servers" {
