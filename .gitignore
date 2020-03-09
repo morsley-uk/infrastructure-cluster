@@ -357,6 +357,6 @@ MigrationBackup/
 *.tfvars
 terraform-provider*
 *.rkestate
-kube_config.yaml
+*config.yaml
 *.pem
 *.pub

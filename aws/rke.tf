@@ -22,19 +22,19 @@ resource "rke_cluster" "cluster" {
 
 }
 
-resource "aws_s3_bucket_object" "kube_config_yaml" {
+resource "aws_s3_bucket_object" "kube-config-yaml" {
 
   depends_on = [aws_s3_bucket.k8s]
 
   bucket  = var.keys_bucket
-  key     = "/kube_config.yaml"
+  key     = "/${var.kube_config_filename}"
   content = rke_cluster.cluster.kube_config_yaml
 
 }
 
-resource "local_file" "kube_config_yaml" {
+resource "local_file" "kube-config-yaml" {
 
-  filename = "rke/kube_config.yaml"
+  filename = "rke/${var.kube_config_filename}"
   content  = rke_cluster.cluster.kube_config_yaml
 
 }

@@ -6,7 +6,7 @@ echo '##########################################################################
 
 #set -x
 
-export KUBECONFIG=rke/kube_config.yaml
+export KUBECONFIG=rke/morsley-io-kube-config.yaml
 
 is_cluster_ready () {
 
