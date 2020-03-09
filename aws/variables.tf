@@ -10,26 +10,22 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
-variable "node_key_name" {
-  default = "morsley-uk-k8s" # ToDo --> replace morsley.uk with morsley.io
+variable "key_name" {
+  default = "morsley-io-rancher-k8s"
 }
 
-# ToDo --> rename to rancher_bucket_name
 variable "keys_bucket" {
-  default = "morsley-uk-rancher" # ToDo --> replace morsley.uk with morsley.io
+  default = "morsley-io-rancher"
 }
 
-# ToDo --> use throughout
 variable "kube_config_filename" {
-  default = "kube-config.yaml"
+  default = "morsley-io-kube-config.yaml"
 }
 
 variable "instance_type" {
-  #default = "t2.micro"
   default = "t2.xlarge"
 }
 
-# ToDo --> use throughout
 variable "cluster_name" {
   default = "morsley-io"
 }
@@ -37,4 +33,8 @@ variable "cluster_name" {
 # ToDo --> use throughout
 variable "hostname" {
   default = "rancher.morsley.io"
+}
+
+variable "domain_name" {
+  default = "morsley.io"
 }

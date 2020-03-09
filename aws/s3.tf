@@ -4,7 +4,7 @@
 
 #
 
-resource "aws_s3_bucket" "keys" {
+resource "aws_s3_bucket" "k8s" {
 
   bucket = var.keys_bucket
   acl    = "private"

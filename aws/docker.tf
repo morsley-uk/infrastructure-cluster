@@ -11,10 +11,6 @@ resource "null_resource" "install-docker" {
     private_key = join("", tls_private_key.node_key.*.private_key_pem)
   }
 
-  #provisioner "remote-exec" {
-  #  script = "install_docker.sh"
-  #}
-
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {

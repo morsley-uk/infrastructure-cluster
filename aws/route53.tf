@@ -2,16 +2,16 @@
 # Route 53
 ###############################################################################
 
-# control.morsley.io
+# rancher.morsley.io
 
 data "aws_route53_zone" "morsley-io" {
-  name         = "morsley.io"
+  name         = var.domain_name
   private_zone = false
 }
 
 resource "aws_route53_record" "rancher-a-record" {
   zone_id = data.aws_route53_zone.morsley-io.zone_id
-  name    = "rancher.morsley.io"
+  name    = var.hostname
   type    = "A"
   ttl     = 300
   records = [aws_instance.k8s.public_ip]

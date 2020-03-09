@@ -2,13 +2,11 @@
 # RKE - RANCHER KUBERNETES ENGINE
 #######################################################################################################################
 
-
-
 resource "rke_cluster" "cluster" {
 
   depends_on = [null_resource.is-docker-ready]
 
-  cluster_name = "morsley-uk"
+  cluster_name = var.cluster_name
 
   disable_port_check = false
 
@@ -22,19 +20,15 @@ resource "rke_cluster" "cluster" {
     role    = ["controlplane", "etcd", "worker"]
   }
 
-  //  lifecycle {
-  //    prevent_destroy = true
-  //  }
-
 }
 
 resource "aws_s3_bucket_object" "kube_config_yaml" {
 
-  depends_on = [aws_s3_bucket.keys]
-  
-  bucket     = var.keys_bucket
-  key        = "/kube_config.yaml"
-  content     = rke_cluster.cluster.kube_config_yaml
+  depends_on = [aws_s3_bucket.k8s]
+
+  bucket  = var.keys_bucket
+  key     = "/kube_config.yaml"
+  content = rke_cluster.cluster.kube_config_yaml
 
 }
 
@@ -42,7 +36,7 @@ resource "local_file" "kube_config_yaml" {
 
   filename = "rke/kube_config.yaml"
   content  = rke_cluster.cluster.kube_config_yaml
-  
+
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html

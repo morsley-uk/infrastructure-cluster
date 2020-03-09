@@ -20,7 +20,7 @@ output "private_key" {
 
 resource "aws_key_pair" "key_pair" {
 
-  key_name   = var.node_key_name
+  key_name   = var.key_name
   public_key = tls_private_key.node_key.public_key_openssh
 
 }
@@ -33,54 +33,54 @@ output "key_pair" {
 
 #
 
-resource "aws_s3_bucket_object" "public-keys" {
+resource "aws_s3_bucket_object" "public-key" {
 
   bucket     = var.keys_bucket
-  key        = "/${var.node_key_name}.pub"
+  key        = "/${var.key_name}.pub"
   content    = join("", tls_private_key.node_key.*.public_key_openssh)
-  depends_on = [aws_s3_bucket.keys]
+  depends_on = [aws_s3_bucket.k8s]
 
 }
 
-resource "null_resource" "delete-public-node-key" {
+resource "null_resource" "delete-public-key" {
 
   provisioner "local-exec" {
-    command = "rm rke/${var.node_key_name}.pub --force || true"
+    command = "rm rke/${var.key_name}.pub --force || true"
   }
 
 }
 
-resource "local_file" "public-node-key" {
+resource "local_file" "public-key" {
 
-  depends_on = [null_resource.delete-public-node-key]
+  depends_on = [null_resource.delete-public-key]
 
-  filename = "rke/${var.node_key_name}.pub"
+  filename = "rke/${var.key_name}.pub"
   content  = join("", tls_private_key.node_key.*.public_key_openssh)
 
 }
 
-resource "aws_s3_bucket_object" "private-keys" {
+resource "aws_s3_bucket_object" "private-key" {
 
   bucket     = var.keys_bucket
-  key        = "/${var.node_key_name}.pem"
+  key        = "/${var.key_name}.pem"
   content    = join("", tls_private_key.node_key.*.private_key_pem)
-  depends_on = [aws_s3_bucket.keys]
+  depends_on = [aws_s3_bucket.k8s]
 
 }
 
-resource "null_resource" "delete-private-node-key" {
+resource "null_resource" "delete-private-key" {
 
   provisioner "local-exec" {
-    command = "rm rke/${var.node_key_name}.pem --force || true"
+    command = "rm rke/${var.key_name}.pem --force || true"
   }
 
 }
 
-resource "local_file" "private-node-key" {
+resource "local_file" "private-key" {
 
-  depends_on = [null_resource.delete-private-node-key]
+  depends_on = [null_resource.delete-private-key]
 
-  filename = "rke/${var.node_key_name}.pem"
+  filename = "rke/${var.key_name}.pem"
   content  = join("", tls_private_key.node_key.*.private_key_pem)
 
 }
