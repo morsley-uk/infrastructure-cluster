@@ -1,3 +1,11 @@
+#    _____             _
+#   |  __ \           | |
+#   | |  | | ___   ___| | _____ _ __
+#   | |  | |/ _ \ / __| |/ / _ \ '__|
+#   | |__| | (_) | (__|   <  __/ |
+#   |_____/ \___/ \___|_|\_\___|_|
+#
+
 # https://www.terraform.io/docs/providers/null/resource.html
 
 resource "null_resource" "install-docker" {

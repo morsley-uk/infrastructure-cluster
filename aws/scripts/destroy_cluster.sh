@@ -20,7 +20,7 @@ print_header
 
 #set -x
 
-export KUBECONFIG=rke/morsley-io-kube-config.yaml
+export KUBECONFIG=generated/morsley-io-kube-config.yaml
 
 echo "NAMESPACES"
 print_divider

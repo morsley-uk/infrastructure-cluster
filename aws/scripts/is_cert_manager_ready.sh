@@ -16,7 +16,7 @@ print_header
 
 #set -x
 
-export KUBECONFIG=rke/morsley-io-kube-config.yaml
+export KUBECONFIG=generated/morsley-io-kube-config.yaml
 
 #nodes_json=$(kubectl get nodes --output "json" 2>/dev/null)
 ##echo $nodes_json | jq .

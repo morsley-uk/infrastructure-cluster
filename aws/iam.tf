@@ -1,3 +1,13 @@
+#    _____          __  __ 
+#   |_   _|   /\   |  \/  |
+#     | |    /  \  | \  / |
+#     | |   / /\ \ | |\/| |
+#    _| |_ / ____ \| |  | |
+#   |_____/_/    \_\_|  |_|
+#
+
+# IDENTITY & ACCESS MANAGEMENT
+
 resource "aws_iam_role" "rke-role" {
 
   name = "rke-role"

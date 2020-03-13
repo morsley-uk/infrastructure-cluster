@@ -1,6 +1,8 @@
 #!/bin/bash
 
-export KUBECONFIG=rke/morsley-io-kube-config.yaml
+
+
+export KUBECONFIG=generated/morsley-io-kube-config.yaml
 
 bash header.sh "Are Node(s) Up?"
 

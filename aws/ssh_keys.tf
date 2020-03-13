@@ -1,6 +1,11 @@
-###############################################################################
-# SSH KEYS
-###############################################################################
+#     _____ _____ _    _   _  __              
+#    / ____/ ____| |  | | | |/ /              
+#   | (___| (___ | |__| | | ' / ___ _   _ ___ 
+#    \___ \\___ \|  __  | |  < / _ \ | | / __|
+#    ____) |___) | |  | | | . \  __/ |_| \__ \
+#   |_____/_____/|_|  |_| |_|\_\___|\__, |___/
+#                                    __/ |    
+#                                   |___/     
 
 # https://www.terraform.io/docs/providers/tls/r/private_key.html
 
@@ -45,7 +50,7 @@ resource "aws_s3_bucket_object" "public-key" {
 resource "null_resource" "delete-public-key" {
 
   provisioner "local-exec" {
-    command = "rm rke/${var.key_name}.pub --force || true"
+    command = "rm generated/${var.key_name}.pub --force || true"
   }
 
 }
@@ -54,7 +59,7 @@ resource "local_file" "public-key" {
 
   depends_on = [null_resource.delete-public-key]
 
-  filename = "rke/${var.key_name}.pub"
+  filename = "generated/${var.key_name}.pub"
   content  = join("", tls_private_key.node_key.*.public_key_openssh)
 
 }
@@ -71,7 +76,7 @@ resource "aws_s3_bucket_object" "private-key" {
 resource "null_resource" "delete-private-key" {
 
   provisioner "local-exec" {
-    command = "rm rke/${var.key_name}.pem --force || true"
+    command = "rm generated/${var.key_name}.pem --force || true"
   }
 
 }
@@ -80,7 +85,7 @@ resource "local_file" "private-key" {
 
   depends_on = [null_resource.delete-private-key]
 
-  filename = "rke/${var.key_name}.pem"
+  filename = "generated/${var.key_name}.pem"
   content  = join("", tls_private_key.node_key.*.private_key_pem)
 
 }

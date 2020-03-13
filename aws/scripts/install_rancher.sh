@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+#    _____           _        _ _   _____                  _               
+#   |_   _|         | |      | | | |  __ \                | |              
+#     | |  _ __  ___| |_ __ _| | | | |__) |__ _ _ __   ___| |__   ___ _ __ 
+#     | | | '_ \/ __| __/ _` | | | |  _  // _` | '_ \ / __| '_ \ / _ \ '__|
+#    _| |_| | | \__ \ || (_| | | | | | \ \ (_| | | | | (__| | | |  __/ |   
+#   |_____|_| |_|___/\__\__,_|_|_| |_|  \_\__,_|_| |_|\___|_| |_|\___|_|   
+#                                                                        
+                                        
+# Install Rancher via Helm
+
+set -x
+
+echo $(pwd)
+
+export KUBECONFIG=$(pwd)/generated/morsley-io-kube-config.yaml
+
+cat $(pwd)/generated/morsley-io-kube-config.yaml
+
+#kubectl get nodes
+
+# https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/
+
+# 1. Add the Helm chart repository...
+
+#helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+
+# 2. Create a namespace for Rancher...
+
+#kubectl create namespace cattle-system
+
+# 3. Choose your SSL configuration...
+
+# We are going to try 'Rancher Generated Certificates' first, but once this is working, we'll try 'Let's Encrypt'.
+
+# --- Cert-Manager ---
+
+# Install the CustomResourceDefinition resources separately
+#kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml
+
+# Create the namespace for cert-manager
+#kubectl create namespace cert-manager
+
+# Add the Jetstack Helm repository
+#helm repo add jetstack https://charts.jetstack.io
+
+# Update your local Helm chart repository cache
+#helm repo update
+
+# Install the cert-manager Helm chart
+#helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v0.13.1k
+
+# --- Cert-Manager ---
+
+# 4. Install Rancher with Helm and the chosen certificate option
+
+#helm install rancher rancher-latest/rancher \
+#  --namespace cattle-system \
+#  --set hostname=rancher.my.org
+

@@ -1,6 +1,12 @@
-#######################################################################################################################
-# RKE - RANCHER KUBERNETES ENGINE
-#######################################################################################################################
+#    _____  _  ________ 
+#   |  __ \| |/ /  ____|
+#   | |__) | ' /| |__   
+#   |  _  /|  < |  __|  
+#   | | \ \| . \| |____ 
+#   |_|  \_\_|\_\______|
+#
+
+# RANCHER KUBERNETES ENGINE
 
 resource "rke_cluster" "cluster" {
 
@@ -34,7 +40,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
 
 resource "local_file" "kube-config-yaml" {
 
-  filename = "rke/${var.kube_config_filename}"
+  filename = "generated/${var.kube_config_filename}"
   content  = rke_cluster.cluster.kube_config_yaml
 
 }
