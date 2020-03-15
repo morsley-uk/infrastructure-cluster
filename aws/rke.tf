@@ -49,7 +49,10 @@ resource "local_file" "kube-config-yaml" {
 
 resource "null_resource" "is-cluster-ready" {
 
-  depends_on = [rke_cluster.cluster]
+  depends_on = [
+    rke_cluster.cluster,
+    local_file.kube-config-yaml
+  ]
 
   connection {
     type        = "ssh"

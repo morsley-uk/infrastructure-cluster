@@ -8,7 +8,10 @@
 
 resource "null_resource" "install-rancher" {
 
-  depends_on = [null_resource.is-cluster-ready]
+  depends_on = [
+    local_file.kube-config-yaml,
+    null_resource.is-cluster-ready
+  ]
 
   connection {
     type        = "ssh"
