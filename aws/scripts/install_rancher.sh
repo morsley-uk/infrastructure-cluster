@@ -10,13 +10,7 @@
                                         
 # Install Rancher via Helm
 
-set -x
-
-echo $(pwd)
-
 export KUBECONFIG=$(pwd)/generated/morsley-io-kube-config.yaml
-
-#cat $(pwd)/generated/morsley-io-kube-config.yaml
 
 #kubectl get nodes
 
@@ -63,9 +57,12 @@ helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 helm repo update
 
 helm install rancher rancher-stable/rancher \
-  --version v2.3.5
+  --version v2.3.5 \
   --namespace cattle-system \
   --set hostname=rancher.morsley.io \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=letsencrypt@morsley.uk \
   --wait
+
+# https://whynopadlock.com
+# https://www.ssllabs.com/ssltest/
