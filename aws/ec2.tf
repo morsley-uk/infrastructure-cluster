@@ -13,7 +13,7 @@
 resource "aws_instance" "k8s" {
 
   # count = var.instance_count
-  
+
   depends_on = [
     aws_security_group.k8s-sg,
     aws_internet_gateway.k8s-igw
