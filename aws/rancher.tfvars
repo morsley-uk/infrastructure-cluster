@@ -1,4 +1,4 @@
-﻿#    _____                  _               
+#    _____                  _               
 #   |  __ \                | |              
 #   | |__) |__ _ _ __   ___| |__   ___ _ __ 
 #   |  _  // _` | '_ \ / __| '_ \ / _ \ '__|
@@ -8,9 +8,7 @@
 
 key_name = "morsley-io-rancher-k8s"
 
-keys_bucket = "morsley-io-rancher"
-
-kube_config_filename = "morsley-io-rancher-kube-config.yaml"
+keys_bucket = "morsley-io"
 
 hostname = "rancher.morsley.io"
 

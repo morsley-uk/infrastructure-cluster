@@ -16,11 +16,7 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
-variable "key_name" {}
-
 variable "keys_bucket" {}
-
-variable "kube_config_filename" {}
 
 variable "instance_type" {
   default = "t2.2xlarge" # 8 vCPUs, 32 GB RAM

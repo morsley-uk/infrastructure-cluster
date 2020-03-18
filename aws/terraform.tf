@@ -9,7 +9,7 @@
 terraform {
 
   required_version = "= 0.12.23" # https://github.com/hashicorp/terraform/releases
-  
+
   required_providers {
     aws = {
       version = "= 2.53.0" # https://registry.terraform.io/providers/hashicorp/aws/
