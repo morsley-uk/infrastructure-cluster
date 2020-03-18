@@ -15,3 +15,5 @@ kube_config_filename = "morsley-io-rancher-kube-config.yaml"
 hostname = "rancher.morsley.io"
 
 instance_name = "rancher-k8s"
+
+name = "rancher"

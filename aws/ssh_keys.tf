@@ -41,7 +41,7 @@ output "key_pair" {
 resource "aws_s3_bucket_object" "public-key" {
 
   bucket     = var.keys_bucket
-  key        = "/${var.key_name}.pub"
+  key        = "/${var.name}/${var.key_name}.pub"
   content    = join("", tls_private_key.node_key.*.public_key_openssh)
   depends_on = [aws_s3_bucket.k8s]
 
@@ -67,7 +67,7 @@ resource "local_file" "public-key" {
 resource "aws_s3_bucket_object" "private-key" {
 
   bucket     = var.keys_bucket
-  key        = "/${var.key_name}.pem"
+  key        = "/${var.name}/${var.key_name}.pem"
   content    = join("", tls_private_key.node_key.*.private_key_pem)
   depends_on = [aws_s3_bucket.k8s]
 
