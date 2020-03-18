@@ -14,30 +14,23 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
-variable "key_name" {
-  default = "morsley-io-rancher-k8s"
-}
+variable "key_name" {}
 
-variable "keys_bucket" {
-  default = "morsley-io-rancher"
-}
+variable "keys_bucket" {}
 
-variable "kube_config_filename" {
-  default = "morsley-io-kube-config.yaml"
-}
+variable "kube_config_filename" {}
 
 variable "instance_type" {
   default = "t2.2xlarge" # 8 vCPUs, 32 GB RAM
 }
 
+variable "instance_name" {}
+
 variable "cluster_name" {
   default = "morsley-io"
 }
 
-# ToDo --> use throughout
-variable "hostname" {
-  default = "rancher.morsley.io"
-}
+variable "hostname" {}
 
 variable "domain_name" {
   default = "morsley.io"

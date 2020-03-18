@@ -25,3 +25,14 @@ terraform init --backend-config="access_key=" --backend-config="secret_key="
 ```
 
 
+```
+terraform apply -var-file="rancher.tfvars"
+```
+
+```
+terraform apply -var-file="concourse.tfvars"
+```
+
+```
+terraform apply -var-file="vault.tfvars"
+```

@@ -9,7 +9,7 @@
 
 A Kubernetes cluster on AWS via Terraform.
 
-This is to be achieved using Rancher!
+This is to be achieved using Rancher RKE (Rancher Kubernetes Engine).
 
 AWS:
 
