@@ -15,7 +15,7 @@ output "public-dns" {
 
 output "ssh-command" {
 
-  value = "chmod 400 generated/${var.domain_name}-${var.name}.* && ssh -i \"generated/${var.domain_name}-${var.name}.pem\" ubuntu@${aws_instance.k8s.public_dns}"
+  value = "chmod 400 rancher/${var.domain_name}_${var.name}.* && ssh -i \"rancher/${var.domain_name}_${var.name}.pem\" ubuntu@${aws_instance.k8s.public_dns}"
 
 }
 
