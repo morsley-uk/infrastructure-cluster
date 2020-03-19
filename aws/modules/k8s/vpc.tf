@@ -15,7 +15,7 @@ resource "aws_vpc" "k8s-vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "k8s-vpc"
+    Name = "${var.name}-k8s-vpc"
   }
 
 }
@@ -32,7 +32,7 @@ resource "aws_subnet" "public" {
   #availability_zone = ?
 
   tags = {
-    Name = "k8s-public-subnet"
+    Name = "${var.name}-k8s-public-subnet"
   }
 
 }
@@ -73,7 +73,7 @@ resource "aws_internet_gateway" "k8s-igw" {
   vpc_id = aws_vpc.k8s-vpc.id
 
   tags = {
-    Name = "k8s-igw"
+    Name = "${var.name}-k8s-igw"
   }
 
 }
@@ -92,7 +92,7 @@ resource "aws_route_table" "k8s-rt" {
   }
 
   tags = {
-    Name = "k8s-rt"
+    Name = "${var.name}-k8s-rt"
   }
 
 }
@@ -123,7 +123,7 @@ resource "aws_route_table_association" "k8s-rta" {
 
 resource "aws_security_group" "k8s-sg" {
 
-  name        = "k8s-sg"
+  name        = "${var.name}-k8s-sg"
   description = "Kubernetes"
   vpc_id      = aws_vpc.k8s-vpc.id
 

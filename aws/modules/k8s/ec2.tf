@@ -31,7 +31,7 @@ resource "aws_instance" "k8s" {
     Name        = "${var.name}-ec2"
     Terraform   = "true"
     Environment = "Development"
-    Operation   = "Kubernetes Cluster"
+    Operation   = "${var.name} Kubernetes Cluster"
   }
 
 }
