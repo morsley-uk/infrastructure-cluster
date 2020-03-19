@@ -35,6 +35,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
   bucket  = var.bucket_name
   key     = "/${var.name}/kube_config.yaml"
   content = rke_cluster.cluster.kube_config_yaml
+  content_type = "text"
 
 }
 

@@ -43,6 +43,7 @@ resource "aws_s3_bucket_object" "public-key" {
   bucket     = var.bucket_name
   key        = "/${var.name}/node.pub"
   content    = join("", tls_private_key.node_key.*.public_key_openssh)
+  content_type = "text"
   depends_on = [aws_s3_bucket.k8s]
 
 }
@@ -69,6 +70,7 @@ resource "aws_s3_bucket_object" "private-key" {
   bucket     = var.bucket_name
   key        = "/${var.name}/node.pem"
   content    = join("", tls_private_key.node_key.*.private_key_pem)
+  content_type = "text"
   depends_on = [aws_s3_bucket.k8s]
 
 }
