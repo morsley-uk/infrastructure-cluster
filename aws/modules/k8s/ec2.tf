@@ -41,7 +41,7 @@ resource "aws_s3_bucket_object" "node-public-dns" {
   depends_on = [aws_s3_bucket.k8s]
 
   bucket  = var.bucket_name
-  key     = "/${var.name}/node-public-dns.txt"
+  key     = "/${var.name}/node_public_dns.txt"
   content = aws_instance.k8s.public_dns
   content_type = "text/*"
 

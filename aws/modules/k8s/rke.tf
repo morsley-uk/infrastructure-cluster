@@ -41,7 +41,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
 
 resource "local_file" "kube-config-yaml" {
 
-  filename = "generated/kube-config.yaml"
+  filename = "rancher/kube_config.yaml"
   content  = rke_cluster.cluster.kube_config_yaml
 
 }
