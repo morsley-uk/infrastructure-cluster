@@ -7,15 +7,15 @@
 #                    | |                  
 #                    |_|                  
 
-output "public_dns" {
+output "public-dns" {
 
   value = aws_instance.k8s[*].public_dns
 
 }
 
-output "ssh_command" {
+output "ssh-command" {
 
-  value = "chmod 400 generated/${var.domain_name}-${var.instance_name}.* && ssh -i \"generated/${var.domain_name}-${var.instance_name}.pem\" ubuntu@${aws_instance.k8s.public_dns}"
+  value = "chmod 400 generated/${var.domain_name}-${var.name}.* && ssh -i \"generated/${var.domain_name}-${var.name}.pem\" ubuntu@${aws_instance.k8s.public_dns}"
 
 }
 

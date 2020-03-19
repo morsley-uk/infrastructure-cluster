@@ -6,6 +6,39 @@
 #   |_|  \_\__,_|_| |_|\___|_| |_|\___|_|   
 #                                         
 
+module "k8s" {
+
+  name = "rancher"
+
+  access_key = var.access_key
+  secret_key = var.secret_key
+
+  region = var.region
+
+  keys_bucket  = var.keys_bucket
+  cluster_size = 1
+  hostname     = "rancher.morsley.io"
+
+  domain_name = "morsley.io"
+
+  cluster_name = "morsley-io"
+
+  source = "./modules/k8s"
+
+}
+
+output "rancher-public-dns" {
+
+  value = module.k8s.public-dns
+
+}
+
+output "rancher-ssh-command" {
+
+  value = module.k8s.ssh-command
+
+}
+
 //resource "null_resource" "install-rancher" {
 //
 //  depends_on = [

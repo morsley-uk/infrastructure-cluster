@@ -28,7 +28,7 @@ resource "aws_instance" "k8s" {
   iam_instance_profile   = aws_iam_instance_profile.rke.name
 
   tags = {
-    Name        = var.instance_name
+    Name        = "${var.name}-ec2"
     Terraform   = "true"
     Environment = "Development"
     Operation   = "Kubernetes Cluster"

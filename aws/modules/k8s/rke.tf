@@ -33,7 +33,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
   depends_on = [aws_s3_bucket.k8s]
 
   bucket  = var.keys_bucket
-  key     = "/${var.name}/${var.domain_name}-${var.instance_name}.yaml"
+  key     = "/${var.name}/${var.domain_name}-${var.name}.yaml"
   content = rke_cluster.cluster.kube_config_yaml
 
 }
@@ -64,7 +64,7 @@ resource "null_resource" "is-cluster-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "chmod +x scripts/is_cluster_ready.sh && bash scripts/is_cluster_ready.sh"
+    command = "chmod +x ${path.cwd}/modules/scripts/is_cluster_ready.sh && bash ${path.cwd}/modules/scripts/is_cluster_ready.sh"
   }
 
 }

@@ -25,7 +25,7 @@ output "private_key" {
 
 resource "aws_key_pair" "key_pair" {
 
-  key_name   = "${var.domain_name}-${var.instance_name}"
+  key_name   = "${var.domain_name}-${var.name}"
   public_key = tls_private_key.node_key.public_key_openssh
 
 }
@@ -41,7 +41,7 @@ output "key_pair" {
 resource "aws_s3_bucket_object" "public-key" {
 
   bucket     = var.keys_bucket
-  key        = "/${var.name}/${var.cluster_name}-${var.instance_name}.pub"
+  key        = "/${var.name}/${var.cluster_name}-${var.name}.pub"
   content    = join("", tls_private_key.node_key.*.public_key_openssh)
   depends_on = [aws_s3_bucket.k8s]
 
@@ -50,7 +50,7 @@ resource "aws_s3_bucket_object" "public-key" {
 resource "null_resource" "delete-public-key" {
 
   provisioner "local-exec" {
-    command = "rm generated/${var.cluster_name}-${var.instance_name}.pub --force || true"
+    command = "rm generated/${var.cluster_name}-${var.name}.pub --force || true"
   }
 
 }
@@ -59,7 +59,7 @@ resource "local_file" "public-key" {
 
   depends_on = [null_resource.delete-public-key]
 
-  filename = "generated/${var.cluster_name}-${var.instance_name}.pub"
+  filename = "generated/${var.cluster_name}-${var.name}.pub"
   content  = join("", tls_private_key.node_key.*.public_key_openssh)
 
 }
@@ -67,7 +67,7 @@ resource "local_file" "public-key" {
 resource "aws_s3_bucket_object" "private-key" {
 
   bucket     = var.keys_bucket
-  key        = "/${var.name}/${var.cluster_name}-${var.instance_name}.pem"
+  key        = "/${var.name}/${var.cluster_name}-${var.name}.pem"
   content    = join("", tls_private_key.node_key.*.private_key_pem)
   depends_on = [aws_s3_bucket.k8s]
 
@@ -76,7 +76,7 @@ resource "aws_s3_bucket_object" "private-key" {
 resource "null_resource" "delete-private-key" {
 
   provisioner "local-exec" {
-    command = "rm generated/${var.cluster_name}-${var.instance_name}.pem --force || true"
+    command = "rm generated/${var.cluster_name}-${var.name}.pem --force || true"
   }
 
 }
@@ -85,7 +85,7 @@ resource "local_file" "private-key" {
 
   depends_on = [null_resource.delete-private-key]
 
-  filename = "generated/${var.cluster_name}-${var.instance_name}.pem"
+  filename = "generated/${var.cluster_name}-${var.name}.pem"
   content  = join("", tls_private_key.node_key.*.private_key_pem)
 
 }

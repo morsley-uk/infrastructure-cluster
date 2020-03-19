@@ -8,10 +8,10 @@
 
 #key_name = "morsley-io-rancher-k8s"
 
-keys_bucket = "morsley-io"
+#keys_bucket = "morsley-io"
 
-hostname = "rancher.morsley.io"
+#hostname = "rancher.morsley.io"
 
-instance_name = "rancher-k8s"
+#instance_name = "rancher-k8s"
 
-name = "rancher"
+#name = "rancher"
