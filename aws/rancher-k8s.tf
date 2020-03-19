@@ -17,10 +17,9 @@ module "k8s" {
 
   keys_bucket  = var.keys_bucket
   cluster_size = 1
+  domain_name  = "morsley.io"
   hostname     = "rancher.morsley.io"
-
-  domain_name = "morsley.io"
-
+  
   cluster_name = "morsley-io"
 
   source = "./modules/k8s"
