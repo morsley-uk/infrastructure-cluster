@@ -32,7 +32,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
 
   depends_on = [aws_s3_bucket.k8s]
 
-  bucket  = var.keys_bucket
+  bucket  = var.bucket_name
   key     = "/${var.name}/kube_config.yaml"
   content = rke_cluster.cluster.kube_config_yaml
 

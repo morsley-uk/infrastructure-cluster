@@ -4,8 +4,13 @@
 #   |  _  // _` | '_ \ / __| '_ \ / _ \ '__|
 #   | | \ \ (_| | | | | (__| | | |  __/ |   
 #   |_|  \_\__,_|_| |_|\___|_| |_|\___|_|   
-#                                         
-
+#    _  __     _                          _            
+#   | |/ /    | |                        | |           
+#   | ' /_   _| |__   ___ _ __ _ __   ___| |_ ___  ___ 
+#   |  <| | | | '_ \ / _ \ '__| '_ \ / _ \ __/ _ \/ __|
+#   | . \ |_| | |_) |  __/ |  | | | |  __/ ||  __/\__ \
+#   |_|\_\__,_|_.__/ \___|_|  |_| |_|\___|\__\___||___/
+#                                                    
 module "k8s" {
 
   name = "rancher"
@@ -15,7 +20,7 @@ module "k8s" {
 
   region = var.region
 
-  keys_bucket  = var.keys_bucket
+  bucket_name  = var.bucket_name
   cluster_size = 1
   domain_name  = "morsley.io"
   hostname     = "rancher.morsley.io"

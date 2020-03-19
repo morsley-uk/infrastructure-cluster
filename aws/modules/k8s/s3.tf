@@ -10,7 +10,7 @@
 
 resource "aws_s3_bucket" "k8s" {
 
-  bucket = var.keys_bucket
+  bucket = var.bucket_name
   acl    = "private"
 
   versioning {

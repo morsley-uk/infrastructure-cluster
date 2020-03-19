@@ -13,7 +13,7 @@ variable "name" {}
 variable "access_key" {}
 variable "secret_key" {}
 
-variable "keys_bucket" {}
+variable "bucket_name" {}
 
 variable "instance_type" {
   default = "t2.2xlarge" # 8 vCPUs, 32 GB RAM

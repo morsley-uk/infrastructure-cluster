@@ -36,6 +36,16 @@ resource "aws_instance" "k8s" {
 
 }
 
+resource "aws_s3_bucket_object" "node-public-dns" {
+
+  depends_on = [aws_s3_bucket.k8s]
+
+  bucket  = var.bucket_name
+  key     = "/${var.name}/node-public-dns.txt"
+  content = aws_instance.k8s.public_dns
+
+}
+
 output "ec2_k8s" {
   value = aws_instance.k8s
 }
