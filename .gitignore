@@ -5,6 +5,6 @@
 terraform.tfvars
 terraform-provider*
 *.rkestate
-*kube-config.yaml
+kube_config.yaml
 *.pem
 *.pub
