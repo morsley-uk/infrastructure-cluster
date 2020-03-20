@@ -2,7 +2,7 @@
 .terraform
 *.tfstate*
 *.tfstate.backup
-terraform.tfvars
+*tfvars
 terraform-provider*
 *.rkestate
 kube_config.yaml
