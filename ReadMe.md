@@ -4,45 +4,37 @@
     |  _  // _ \/ _` |/ _` | | |\/| |/ _ \ |
     | | \ \  __/ (_| | (_| | | |  | |  __/_|
     |_|  \_\___|\__,_|\__,_| |_|  |_|\___(_)
-                                         
-# Infrastructure - Kubernetes
+             
+The purpose of this project is to provision a Kubernetes cluster (via Rancher's
+RKE - Rancher Kubernetes Engine) to host Rancher. This could have been hosted
+on any Cloud provider, but I have chosen AWS (Amazon Web Services).
 
-A Kubernetes cluster on AWS via Terraform.
+This is being achieved by using Terraform.     
 
-This is to be achieved using Rancher RKE (Rancher Kubernetes Engine).
+Useful links:
 
-AWS:
+## AWS:
 
 https://www.terraform.io/docs/providers/aws/index.html
 
-Rancher (official):
+## Rancher (official):
 
 https://www.terraform.io/docs/providers/rancher/index.html
 https://www.terraform.io/docs/providers/rancher2/index.html
 
-Rancher (unofficial):
+## Rancher RKE (unofficial):
 
 RKE: https://github.com/rancher/terraform-provider-rke/releases
 
+Because RKE hasn't yet been released to Terraform to maintain, it must be downloaded first:
+
 Download from GitHub
 
-Then add the file to your .terraform/plugins/[Operating System] folder.
+Then add the file to your ~/.terraform.d/plugins/[Operating System] folder.
 Replace the files OS portion with its version.
 
-## Installing Rancher with Helm
+i.e. 
 
-https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/
+~/.terraform.d/plugins/linux_amd64/terraform-provider-rke_v1.0.0
 
-1. Add node(s) with Terraform via AWS provider.
-2. Add cluster with Terraform via RKE provider.
-3. Add Rancher to cluster with Terraform via Bash scripts (Null_Reference resource).
-
-## Install Rancher on the Kubernetes cluster
-
-1. Add Helm chart repository.
-2. Create a Rancher namespace.
-3. Install Cert-Manager (Let's Encrypt).
-4. Install Rancher with Helm.
-
-# SSH
-
+(As I'm using Ubuntu 18.04 LTS)

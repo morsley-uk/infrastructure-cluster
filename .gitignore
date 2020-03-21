@@ -9,7 +9,9 @@
 terraform-provider*
 *.rkestate
 
-# Kubernetes...
-kube_config.yaml
+# AWS, EC2...
 *.pem
 *.pub
+
+# RKE, Kubernetes...
+kube_config.yaml
