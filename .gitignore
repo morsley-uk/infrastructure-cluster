@@ -8,6 +8,8 @@
 *.tfvars
 terraform-provider*
 *.rkestate
+**/.terraform/*
+*.tfstate
 
 # AWS, EC2...
 *.pem
