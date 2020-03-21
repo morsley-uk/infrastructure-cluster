@@ -1,10 +1,15 @@
+# JetBrains Rider...
 .idea
+
+# Terrafrom...
 .terraform
 *.tfstate*
 *.tfstate.backup
-*tfvars
+*.tfvars
 terraform-provider*
 *.rkestate
+
+# Kubernetes...
 kube_config.yaml
 *.pem
 *.pub
