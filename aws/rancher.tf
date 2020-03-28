@@ -1,9 +1,3 @@
-#    _____                  _               
-#   |  __ \                | |              
-#   | |__) |__ _ _ __   ___| |__   ___ _ __ 
-#   |  _  // _` | '_ \ / __| '_ \ / _ \ '__|
-#   | | \ \ (_| | | | | (__| | | |  __/ |   
-#   |_|  \_\__,_|_| |_|\___|_| |_|\___|_|   
 #    _  __     _                          _            
 #   | |/ /    | |                        | |           
 #   | ' /_   _| |__   ___ _ __ _ __   ___| |_ ___  ___ 
@@ -14,12 +8,12 @@
 
 module "k8s" {
 
-  name = "rancher"
+  name         = "rancher"
 
-  access_key = var.access_key
-  secret_key = var.secret_key
+  access_key   = var.access_key
+  secret_key   = var.secret_key
 
-  region = var.region
+  region       = var.region
 
   bucket_name  = var.bucket_name
   cluster_size = 1
@@ -28,7 +22,7 @@ module "k8s" {
   
   cluster_name = "morsley-io"
 
-  source = "./modules/k8s"
+  source       = "./modules/k8s"
 
 }
 

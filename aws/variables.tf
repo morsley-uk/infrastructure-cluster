@@ -7,7 +7,6 @@
 #                                             
 
 # Expect both of these to be in 'terraform.tfvars' file.
-
 variable "access_key" {}
 variable "secret_key" {}
 
