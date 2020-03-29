@@ -7,10 +7,6 @@
 #                                    __/ |    
 #                                   |___/     
 
-locals {
-  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
-}
-
 # https://www.terraform.io/docs/providers/tls/r/private_key.html
 
 resource "tls_private_key" "node_key" {

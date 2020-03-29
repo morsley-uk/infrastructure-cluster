@@ -10,10 +10,6 @@
 
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 
-locals {
-  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
-}
-
 resource "aws_instance" "k8s" {
 
   # count = var.instance_count

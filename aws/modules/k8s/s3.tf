@@ -8,10 +8,6 @@
 
 # SIMPLE STORAGE SERVICE
 
-locals {
-  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
-}
-
 resource "aws_s3_bucket" "k8s" {
 
   bucket = local.bucket_name

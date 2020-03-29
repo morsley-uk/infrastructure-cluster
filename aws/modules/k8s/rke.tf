@@ -8,10 +8,6 @@
 
 # RANCHER KUBERNETES ENGINE
 
-locals {
-  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
-}
-
 resource "rke_cluster" "cluster" {
 
   depends_on = [null_resource.is-docker-ready]
