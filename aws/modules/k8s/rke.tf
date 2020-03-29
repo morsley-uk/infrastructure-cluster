@@ -65,6 +65,9 @@ resource "null_resource" "is-cluster-ready" {
 
   provisioner "local-exec" {
     command = "chmod +x ${path.cwd}/modules/scripts/is_cluster_ready.sh && bash ${path.cwd}/modules/scripts/is_cluster_ready.sh"
+    environment = {
+      FOLDER = var.name
+    }
   }
 
 }
