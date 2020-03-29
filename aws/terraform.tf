@@ -17,7 +17,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "morsley-io-terraform"
+    bucket         = "morsley-io-terraform-backend-state"
     key            = "infrastructure-cluster"
     region         = "eu-west-2"
     dynamodb_table = "morsley-io-terraform-state-lock-cluster"
