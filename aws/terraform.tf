@@ -20,7 +20,7 @@ terraform {
     bucket         = "morsley-io-terraform"
     key            = "infrastructure-cluster"
     region         = "eu-west-2"
-    dynamodb_table = "morsley-io-tfstatelock-cluster"
+    dynamodb_table = "morsley-io-terraform-state-lock-cluster"
     encrypt        = true
   }
 
