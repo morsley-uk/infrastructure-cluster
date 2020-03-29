@@ -14,6 +14,6 @@ variable "region" {
   default = "eu-west-2" # London
 }
 
-variable "bucket_name" {
-  default = "morsley-io"
+variable "domain" {
+  default = "morsley.io"
 }

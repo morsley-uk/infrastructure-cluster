@@ -6,14 +6,16 @@
 #       \/ \__,_|_|  |_|\__,_|_.__/|_|\___||___/
 #                                             
 
-variable "region" {}
-
-variable "name" {}
-
 variable "access_key" {}
 variable "secret_key" {}
 
-variable "bucket_name" {}
+variable "region" {}
+
+variable "name" {}
+variable "domain" {}
+variable "cluster_name" {}
+
+#variable "bucket_name" {}
 
 variable "instance_type" {
   #default = "t2.medium" # 2 vCPUs, 4 GB RAM
@@ -26,8 +28,4 @@ variable "cluster_size" {
   default = 1
 }
 
-variable "cluster_name" {}
-
-variable "hostname" {}
-
-variable "domain_name" {}
+#variable "hostname" {}

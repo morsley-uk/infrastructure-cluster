@@ -15,7 +15,7 @@ output "public-dns" {
 
 output "ssh-command" {
 
-  value = "chmod 400 cluster/node.* && ssh -i \"cluster/node.pem\" ubuntu@${aws_instance.k8s.public_dns}"
+  value = "chmod 400 ${var.name}/node.* && ssh -i \"${var.name}/node.pem\" ubuntu@${aws_instance.k8s.public_dns}"
 
 }
 

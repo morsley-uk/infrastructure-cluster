@@ -10,6 +10,10 @@
 
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 
+locals {
+  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
+}
+
 resource "aws_instance" "k8s" {
 
   # count = var.instance_count
@@ -31,7 +35,6 @@ resource "aws_instance" "k8s" {
     Name        = "${var.name}-ec2"
     Terraform   = "true"
     Environment = "Development"
-    Operation   = "${var.name} Kubernetes Cluster"
   }
 
 }
@@ -40,7 +43,7 @@ resource "aws_s3_bucket_object" "node-public-dns" {
 
   depends_on = [aws_s3_bucket.k8s]
 
-  bucket  = var.bucket_name
+  bucket  = local.bucket_name
   key     = "/${var.name}/node_public_dns.txt"
   content = aws_instance.k8s.public_dns
   content_type = "text/*"

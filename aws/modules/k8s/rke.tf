@@ -8,6 +8,10 @@
 
 # RANCHER KUBERNETES ENGINE
 
+locals {
+  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
+}
+
 resource "rke_cluster" "cluster" {
 
   depends_on = [null_resource.is-docker-ready]
@@ -31,7 +35,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
 
   depends_on = [aws_s3_bucket.k8s]
 
-  bucket  = var.bucket_name
+  bucket  = local.bucket_name
   key     = "/${var.name}/kube_config.yaml"
   content = rke_cluster.cluster.kube_config_yaml
   content_type = "text/*"

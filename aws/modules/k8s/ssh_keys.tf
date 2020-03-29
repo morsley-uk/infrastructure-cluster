@@ -7,6 +7,10 @@
 #                                    __/ |    
 #                                   |___/     
 
+locals {
+  bucket_name = "${replace(var.domain, ".", "-")}-${var.name}"
+}
+
 # https://www.terraform.io/docs/providers/tls/r/private_key.html
 
 resource "tls_private_key" "node_key" {
@@ -40,7 +44,7 @@ output "key_pair" {
 
 resource "aws_s3_bucket_object" "public-key" {
 
-  bucket     = var.bucket_name
+  bucket     = local.bucket_name
   key        = "/${var.name}/node.pub"
   content    = join("", tls_private_key.node_key.*.public_key_openssh)
   content_type = "text/*"
@@ -67,7 +71,7 @@ resource "local_file" "public-key" {
 
 resource "aws_s3_bucket_object" "private-key" {
 
-  bucket     = var.bucket_name
+  bucket     = local.bucket_name
   key        = "/${var.name}/node.pem"
   content    = join("", tls_private_key.node_key.*.private_key_pem)
   content_type = "text/*"
