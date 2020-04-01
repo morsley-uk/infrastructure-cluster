@@ -31,7 +31,7 @@ resource "aws_s3_bucket_object" "kube-config-yaml" {
 
   depends_on = [aws_s3_bucket.k8s]
 
-  bucket  = var.bucket_name
+  bucket  = local.bucket_name
   key     = "/${var.name}/kube_config.yaml"
   content = rke_cluster.cluster.kube_config_yaml
   content_type = "text/*"
@@ -65,6 +65,9 @@ resource "null_resource" "is-cluster-ready" {
 
   provisioner "local-exec" {
     command = "chmod +x ${path.cwd}/modules/scripts/is_cluster_ready.sh && bash ${path.cwd}/modules/scripts/is_cluster_ready.sh"
+    environment = {
+      FOLDER = "${var.name}"
+    }
   }
 
 }

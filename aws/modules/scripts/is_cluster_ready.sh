@@ -10,12 +10,12 @@
 #                                                                        |___/     
                                                                        
 echo '###############################################################################'
-echo '# IS CLUSTER READY...'
+echo '# IS CLUSTER READY...?'
 echo '###############################################################################'
 
 #set -x
 
-export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
+export KUBECONFIG=$(pwd)/$FOLDER/kube_config.yaml
 
 is_cluster_ready () {
 
@@ -205,7 +205,7 @@ print_divider
 #set +x
 
 echo '###############################################################################'
-echo '# CLUSTER READY'
+echo '# IS CLUSTER READY'
 echo '###############################################################################'
 
 exit 0

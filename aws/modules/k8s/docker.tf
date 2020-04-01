@@ -24,6 +24,7 @@ resource "null_resource" "install-docker" {
   provisioner "file" {
     source      = "${path.cwd}/modules/scripts/install_docker.sh"
     destination = "install_docker.sh"
+    
   }
 
   # https://www.terraform.io/docs/provisioners/remote-exec.html
