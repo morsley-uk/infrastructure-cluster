@@ -16,12 +16,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "morsley-io-terraform"
-    key            = "infrastructure-k8s"
-    region         = "eu-west-2"
-    dynamodb_table = "morsley-io-tfstatelock-k8s"
-    encrypt        = true
-  }
+//  backend "s3" {
+//    bucket         = "morsley-io-terraform"
+//    key            = "infrastructure-k8s"
+//    region         = "eu-west-2"
+//    dynamodb_table = "morsley-io-tfstatelock-k8s"
+//    encrypt        = true
+//  }
 
 }
