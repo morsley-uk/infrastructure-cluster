@@ -17,3 +17,5 @@ terraform-provider*
 
 # RKE, Kubernetes...
 kube_config.yaml
+
+*/cluster/*
