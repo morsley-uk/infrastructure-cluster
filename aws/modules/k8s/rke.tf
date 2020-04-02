@@ -25,9 +25,9 @@ resource "rke_cluster" "cluster" {
     role    = ["controlplane", "etcd", "worker"]
   }
 
-  cloud_provider {
-    name = "aws"
-  }
+//  cloud_provider {
+//    name = "aws"
+//  }
 
 }
 
