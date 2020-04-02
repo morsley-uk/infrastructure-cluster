@@ -25,6 +25,10 @@ resource "rke_cluster" "cluster" {
     role    = ["controlplane", "etcd", "worker"]
   }
 
+  cloud_provider {
+    name = "aws"
+  }
+
 }
 
 resource "aws_s3_bucket_object" "kube-config-yaml" {
