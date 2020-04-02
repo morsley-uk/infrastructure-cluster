@@ -25,7 +25,7 @@ output "private_key" {
 
 resource "aws_key_pair" "key_pair" {
 
-  key_name   = "${var.region}_${var.cluster_name}_${var.name}"
+  key_name   = local.key_name
   public_key = tls_private_key.node_key.public_key_openssh
 
 }

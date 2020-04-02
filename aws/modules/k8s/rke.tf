@@ -24,11 +24,7 @@ resource "rke_cluster" "cluster" {
     ssh_key = tls_private_key.node_key.private_key_pem
     role    = ["controlplane", "etcd", "worker"]
   }
-
-//  cloud_provider {
-//    name = "aws"
-//  }
-
+  
 }
 
 resource "aws_s3_bucket_object" "kube-config-yaml" {
