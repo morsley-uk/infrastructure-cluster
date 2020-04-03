@@ -8,12 +8,6 @@
 
 # VIRTUAL PRIVATE CLOUD
 
-//locals {
-//  cluster_id_tag = {
-//    "kubernetes.io/cluster/${var.cluster_id}" = "owned"
-//  }
-//}
-
 resource "aws_vpc" "k8s-vpc" {
 
   cidr_block           = "10.0.0.0/16" # 65,536
@@ -38,8 +32,8 @@ resource "aws_subnet" "public" {
   #availability_zone = ?
 
   tags = {
-    Name = "${var.name}-k8s-public-subnet"
-    local.cluster_id = "owned" # Required by Rancher RKE
+    Name                  = "${var.name}-k8s-public-subnet"
+    "${local.cluster_id}" = "owned" # Required by Rancher RKE
   }
 
 }
@@ -135,8 +129,8 @@ resource "aws_security_group" "k8s-sg" {
   vpc_id      = aws_vpc.k8s-vpc.id
 
   tags = {
-    Name             = "${var.name}-k8s-sg"
-    local.cluster_id = "owned" # Required by Rancher RKE
+    Name                  = "${var.name}-k8s-sg"
+    "${local.cluster_id}" = "owned" # Required by Rancher RKE
   }
   
   ingress {
