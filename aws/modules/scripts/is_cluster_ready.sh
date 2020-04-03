@@ -17,7 +17,7 @@ echo '##########################################################################
 
 export KUBECONFIG=$(pwd)/$FOLDER/kube_config.yaml
 
-chmod 400 $(pwd)/$FOLDER/*
+chmod 400 $(pwd)/$FOLDER/*.pem
 
 is_cluster_ready () {
 
