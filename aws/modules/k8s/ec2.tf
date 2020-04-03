@@ -28,11 +28,11 @@ resource "aws_instance" "k8s" {
   iam_instance_profile   = aws_iam_instance_profile.rke.name
 
   tags = {
-    Name        = "${var.name}-ec2"
-    Terraform   = "true"
-    Environment = "Development"
+    Name             = "${var.name}-ec2"
+    local.cluster_id = "owned" # Required by Rancher RKE
+    Terraform        = "true"
   }
-
+  
 }
 
 resource "aws_s3_bucket_object" "node-public-dns" {

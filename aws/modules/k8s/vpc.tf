@@ -39,6 +39,7 @@ resource "aws_subnet" "public" {
 
   tags = {
     Name = "${var.name}-k8s-public-subnet"
+    local.cluster_id = "owned" # Required by Rancher RKE
   }
 
 }
@@ -81,7 +82,7 @@ resource "aws_internet_gateway" "k8s-igw" {
   tags = {
     Name = "${var.name}-k8s-igw"
   }
-
+  
 }
 
 # ROUTE TABLES
@@ -133,6 +134,11 @@ resource "aws_security_group" "k8s-sg" {
   description = "Kubernetes"
   vpc_id      = aws_vpc.k8s-vpc.id
 
+  tags = {
+    Name             = "${var.name}-k8s-sg"
+    local.cluster_id = "owned" # Required by Rancher RKE
+  }
+  
   ingress {
     from_port   = 0
     to_port     = 0
