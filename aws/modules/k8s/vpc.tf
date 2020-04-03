@@ -8,6 +8,12 @@
 
 # VIRTUAL PRIVATE CLOUD
 
+//locals {
+//  cluster_id_tag = {
+//    "kubernetes.io/cluster/${var.cluster_id}" = "owned"
+//  }
+//}
+
 resource "aws_vpc" "k8s-vpc" {
 
   cidr_block           = "10.0.0.0/16" # 65,536

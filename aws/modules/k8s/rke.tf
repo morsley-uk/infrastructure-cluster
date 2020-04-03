@@ -20,9 +20,14 @@ resource "rke_cluster" "cluster" {
 
   nodes {
     address = aws_instance.k8s.public_ip
+    internal_address = aws_instance.k8s.private_ip
     user    = "ubuntu"
     ssh_key = tls_private_key.node_key.private_key_pem
     role    = ["controlplane", "etcd", "worker"]
+  }
+  
+  cloud_provider {
+    name = "aws"
   }
   
 }
