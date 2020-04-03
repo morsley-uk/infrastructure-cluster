@@ -77,19 +77,19 @@ resource "null_resource" "is-cluster-ready" {
 
 }
 
-//resource "null_resource" "destroy-cluster" {
-//
-//  depends_on = [
-//    rke_cluster.cluster,
-//    local_file.kube_cluster_yaml,
-//    null_resource.is-cluster-ready
-//  ]
-//
-//  # https://www.terraform.io/docs/provisioners/local-exec.html
-//
-//  provisioner "local-exec" {
-//    when    = destroy
-//    command = "chmod +x scripts/destroy_cluster.sh && bash scripts/destroy_cluster.sh"
-//  }
-//
-//}
+resource "null_resource" "destroy-cluster" {
+
+  depends_on = [
+    rke_cluster.cluster,
+    local_file.kube-config-yaml,
+    null_resource.is-cluster-ready
+  ]
+
+  # https://www.terraform.io/docs/provisioners/local-exec.html
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "chmod +x scripts/destroy_cluster.sh && bash scripts/destroy_cluster.sh"
+  }
+
+}
