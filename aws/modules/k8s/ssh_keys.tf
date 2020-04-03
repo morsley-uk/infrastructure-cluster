@@ -46,6 +46,11 @@ resource "aws_s3_bucket_object" "public-key" {
   content_type = "text/*"
   depends_on = [aws_s3_bucket.k8s]
 
+  tags = {
+    Name                  = "${var.name}-node-public-key"
+    "${local.cluster_id}" = "owned" # Required by Rancher RKE
+  }
+
 }
 
 resource "null_resource" "delete-public-key" {
@@ -73,6 +78,11 @@ resource "aws_s3_bucket_object" "private-key" {
   content_type = "text/*"
   depends_on = [aws_s3_bucket.k8s]
 
+  tags = {
+    Name                  = "${var.name}-node-private-key"
+    "${local.cluster_id}" = "owned" # Required by Rancher RKE
+  }  
+  
 }
 
 resource "null_resource" "delete-private-key" {
