@@ -89,7 +89,7 @@ resource "null_resource" "destroy-cluster" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "chmod +x scripts/destroy_cluster.sh && bash scripts/destroy_cluster.sh"
+    command = "chmod +x ${path.cwd}/modules/scripts/destroy_cluster.sh && bash ${path.cwd}/modules/scripts/destroy_cluster.sh"
   }
 
 }
