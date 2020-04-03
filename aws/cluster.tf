@@ -8,20 +8,20 @@
 
 module "k8s" {
 
-  source       = "./modules/k8s"
+  source = "./modules/k8s"
 
-  access_key   = var.access_key
-  secret_key   = var.secret_key
-  region       = var.region
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 
   name         = "cluster"
   domain       = var.domain
   cluster_name = "morsley.io"
   cluster_size = 1
-  
+
   #domain_name  = "morsley.io"
   #hostname     = "rancher.morsley.io"  
-  
+
 }
 
 output "rancher-public-dns" {
