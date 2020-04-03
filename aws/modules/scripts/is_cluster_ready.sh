@@ -17,6 +17,8 @@ echo '##########################################################################
 
 export KUBECONFIG=$(pwd)/$FOLDER/kube_config.yaml
 
+chmod 400 $(pwd)/$FOLDER/*
+
 is_cluster_ready () {
 
     nodes_json=$(kubectl get nodes --output "json" 2>/dev/null)
