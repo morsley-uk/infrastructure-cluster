@@ -21,8 +21,7 @@ print_header
 set -x
 
 # Remove the 'cluster' folder...
-rm -rf $(pwd)/$FOLDER
-
+echo rm -rf $(pwd)/$FOLDER/
 
 #export KUBECONFIG=generated/morsley-io-kube-config.yaml
 
