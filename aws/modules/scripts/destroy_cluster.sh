@@ -18,7 +18,11 @@ print_divider () {
 
 print_header
 
-#set -x
+set -x
+
+# Remove the 'cluster' folder...
+rm -rf $(pwd)/$FOLDER
+
 
 #export KUBECONFIG=generated/morsley-io-kube-config.yaml
 
@@ -95,7 +99,7 @@ print_header
 #
 #done
 
-#set +x
+set +x
 
 print_footer
 
