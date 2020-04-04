@@ -29,7 +29,7 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.k8s-vpc.id
   cidr_block              = "10.0.1.0/24" # 256 - ToDo --> Variable
   map_public_ip_on_launch = true
-  #availability_zone = ?
+  availability_zone       = var.availability_zone
 
   tags = {
     Name                  = "${var.name}-k8s-public-subnet"
