@@ -47,6 +47,17 @@ resource "aws_s3_bucket_object" "node-public-dns" {
 
 }
 
+resource "aws_s3_bucket_object" "node-public-ip" {
+
+  depends_on = [aws_s3_bucket.k8s]
+
+  bucket  = local.bucket_name
+  key     = "/${var.name}/node_public_ip.txt"
+  content = aws_instance.k8s.public_ip
+  content_type = "text/*"
+
+}
+
 output "ec2_k8s" {
   value = aws_instance.k8s
 }
