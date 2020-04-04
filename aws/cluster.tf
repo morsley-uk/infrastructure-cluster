@@ -10,9 +10,10 @@ module "k8s" {
 
   source = "./modules/k8s"
 
-  access_key = var.access_key
-  secret_key = var.secret_key
-  region     = var.region
+  access_key        = var.access_key
+  secret_key        = var.secret_key
+  region            = var.region
+  availability_zone = var.availability_zone
 
   name         = "cluster"
   domain       = var.domain

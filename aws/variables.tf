@@ -14,6 +14,10 @@ variable "region" {
   default = "eu-west-2" # London
 }
 
+variable "availability_zone" {
+  default = "eu-west-2a" # London
+}
+
 variable "domain" {
   default = "morsley.io"
 }

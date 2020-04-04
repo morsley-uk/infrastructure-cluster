@@ -21,6 +21,7 @@ resource "aws_instance" "k8s" {
 
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
+  availability_zone      = var.availability_zone 
   subnet_id              = aws_subnet.public.id
   key_name               = aws_key_pair.key_pair.key_name
   monitoring             = true
