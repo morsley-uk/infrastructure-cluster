@@ -77,6 +77,13 @@ resource "null_resource" "is-cluster-ready" {
 
 }
 
+resource "local_file" "kube-config-yaml" {
+
+  filename = "${path.cwd}/${var.name}/destroy.sh"
+  content  = templatefile("${path.cwd}/scripts/destroy.sh", { FOLDER = var.name })
+
+}
+
 resource "null_resource" "destroy-cluster" {
 
   depends_on = [
@@ -89,10 +96,7 @@ resource "null_resource" "destroy-cluster" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "chmod +x ${path.cwd}/modules/scripts/destroy_cluster.sh && bash ${path.cwd}/modules/scripts/destroy_cluster.sh"
-    environment = {
-      FOLDER = "${var.name}"
-    }
+    command = "chmod +x ${path.cwd}/${var.name}/destroy.sh && bash ${path.cwd}/${var.name}/destroy.sh"
   }
 
 }
