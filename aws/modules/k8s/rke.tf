@@ -79,7 +79,7 @@ resource "null_resource" "is-cluster-ready" {
 
 resource "local_file" "destroy-script" {
   
-  content  = templatefile("${path.cwd}/scripts/destroy.sh", { FOLDER = var.name })
+  content  = templatefile("${path.cwd}/modules/scripts/destroy.sh", { FOLDER = var.name })
   filename = "${path.cwd}/${var.name}/destroy.sh"
 
 }
