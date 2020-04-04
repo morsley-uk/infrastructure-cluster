@@ -77,7 +77,7 @@ resource "null_resource" "is-cluster-ready" {
 
 }
 
-resource "local_file" "kube-config-yaml" {
+resource "local_file" "destroy-script" {
 
   filename = "${path.cwd}/${var.name}/destroy.sh"
   content  = templatefile("${path.cwd}/scripts/destroy.sh", { FOLDER = var.name })
