@@ -21,7 +21,7 @@ print_header
 set -x
 
 # Remove the 'cluster' folder...
-echo rm -rf $(pwd)/$FOLDER/
+echo rm -rf $(pwd)/${FOLDER}/
 
 set +x
 
