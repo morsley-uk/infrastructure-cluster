@@ -77,26 +77,26 @@ resource "null_resource" "is-cluster-ready" {
 
 }
 
-resource "local_file" "destroy-script" {
-  
-  content  = templatefile("${path.cwd}/modules/scripts/destroy.sh", { FOLDER = var.name })
-  filename = "${path.cwd}/${var.name}/destroy.sh"
-
-}
-
-resource "null_resource" "destroy-cluster" {
-
-  depends_on = [
-    rke_cluster.cluster,
-    local_file.kube-config-yaml,
-    null_resource.is-cluster-ready
-  ]
-
-  # https://www.terraform.io/docs/provisioners/local-exec.html
-
-  provisioner "local-exec" {
-    when    = destroy
-    command = "chmod +x ${path.cwd}/${var.name}/destroy.sh && bash ${path.cwd}/${var.name}/destroy.sh"
-  }
-
-}
+//resource "local_file" "destroy-script" {
+//  
+//  content  = templatefile("${path.cwd}/modules/scripts/destroy.sh", { FOLDER = var.name })
+//  filename = "${path.cwd}/${var.name}/destroy.sh"
+//
+//}
+//
+//resource "null_resource" "destroy-cluster" {
+//
+//  depends_on = [
+//    rke_cluster.cluster,
+//    local_file.kube-config-yaml,
+//    null_resource.is-cluster-ready
+//  ]
+//
+//  # https://www.terraform.io/docs/provisioners/local-exec.html
+//
+//  provisioner "local-exec" {
+//    when    = destroy
+//    command = "chmod +x ${path.cwd}/${var.name}/destroy.sh && bash ${path.cwd}/${var.name}/destroy.sh"
+//  }
+//
+//}
